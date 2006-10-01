@@ -23,11 +23,11 @@ $test->setOptions(array(
     'description' => 'HTML_TagCloud enables you to generate a "tag cloud" in HTML',
     'baseinstalldir' => 'HTML',
     'version' => '0.1.0',
-    'packagedirectory' => '/home/shouma/dev/php/pear/HTML_TagCloud-0.1.0',
+    'packagedirectory' => '/Users/shoma/dev/cvs.php/pear/HTML_TagCloud',
     'state' => 'beta',
     'filelistgenerator' => 'file',
     'notes' => 'First Release as PEAR Package',
-    'ignore' => array('package.xml', 'generatePackage.xml.php')
+    'ignore' => array('package.xml', 'generatePackage.xml.php', 'CVS')
     ));
 $test->addDependency('PEAR', '1.1');
 $test->addDependency('php', '5.0.0', 'ge', 'php');

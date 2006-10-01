@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0" packagerversion="1.4.6">
+<package version="1.0" packagerversion="1.4.5">
  <name>HTML_TagCloud</name>
  <summary>generate a &quot;tag cloud&quot; in HTML</summary>
  <description>HTML_TagCloud enables you to generate a &quot;tag cloud&quot; in HTML
@@ -15,7 +15,7 @@
   </maintainers>
  <release>
   <version>0.1.0</version>
-  <date>2006-08-02</date>
+  <date>2006-10-02</date>
   <license>PHP License</license>
   <state>beta</state>
   <notes>First Release as PEAR Package
@@ -33,16 +33,30 @@
   <provides type="function" name="HTML_TagCloud::buildHTML" />
   <provides type="function" name="HTML_TagCloud::buildCSS" />
   <filelist>
-   <file role="doc" baseinstalldir="HTML" name="docs/examples/TagCloud_example1.php"/>
-   <file role="doc" baseinstalldir="HTML" name="docs/examples/TagCloud_example2.php"/>
-   <file role="doc" baseinstalldir="HTML" name="docs/examples/TagCloud_example3.php"/>
+   <dir name="docs">
+    <dir name="CVS">
+     <file role="doc" baseinstalldir="HTML" name="Entries"/>
+     <file role="doc" baseinstalldir="HTML" name="Repository"/>
+     <file role="doc" baseinstalldir="HTML" name="Root"/>
+    </dir> <!-- /docs/CVS -->
+    <dir name="examples">
+     <dir name="CVS">
+      <file role="doc" baseinstalldir="HTML" name="Entries"/>
+      <file role="doc" baseinstalldir="HTML" name="Repository"/>
+      <file role="doc" baseinstalldir="HTML" name="Root"/>
+     </dir> <!-- /docs/examples/CVS -->
+     <file role="doc" baseinstalldir="HTML" name="TagCloud_example1.php"/>
+     <file role="doc" baseinstalldir="HTML" name="TagCloud_example2.php"/>
+     <file role="doc" baseinstalldir="HTML" name="TagCloud_example3.php"/>
+    </dir> <!-- /docs/examples -->
+   </dir> <!-- /docs -->
    <file role="php" baseinstalldir="HTML" name="TagCloud.php"/>
   </filelist>
  </release>
  <changelog>
    <release>
     <version>0.1.0</version>
-    <date>2006-08-02</date>
+    <date>2006-10-02</date>
     <license>PHP License</license>
     <state>beta</state>
     <notes>First Release as PEAR Package
