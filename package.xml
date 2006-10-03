@@ -14,11 +14,11 @@
   </maintainer>
   </maintainers>
  <release>
-  <version>0.1.0</version>
-  <date>2006-10-02</date>
+  <version>0.1.1</version>
+  <date>2006-10-03</date>
   <license>PHP License</license>
   <state>beta</state>
-  <notes>First Release as PEAR Package
+  <notes>removed docs/CVS
   </notes>
   <deps>
    <dep type="pkg" rel="ge" version="1.1" optional="no">PEAR</dep>
@@ -34,17 +34,7 @@
   <provides type="function" name="HTML_TagCloud::buildCSS" />
   <filelist>
    <dir name="docs">
-    <dir name="CVS">
-     <file role="doc" baseinstalldir="HTML" name="Entries"/>
-     <file role="doc" baseinstalldir="HTML" name="Repository"/>
-     <file role="doc" baseinstalldir="HTML" name="Root"/>
-    </dir> <!-- /docs/CVS -->
     <dir name="examples">
-     <dir name="CVS">
-      <file role="doc" baseinstalldir="HTML" name="Entries"/>
-      <file role="doc" baseinstalldir="HTML" name="Repository"/>
-      <file role="doc" baseinstalldir="HTML" name="Root"/>
-     </dir> <!-- /docs/examples/CVS -->
      <file role="doc" baseinstalldir="HTML" name="TagCloud_example1.php"/>
      <file role="doc" baseinstalldir="HTML" name="TagCloud_example2.php"/>
      <file role="doc" baseinstalldir="HTML" name="TagCloud_example3.php"/>
@@ -55,11 +45,11 @@
  </release>
  <changelog>
    <release>
-    <version>0.1.0</version>
-    <date>2006-10-02</date>
+    <version>0.1.1</version>
+    <date>2006-10-03</date>
     <license>PHP License</license>
     <state>beta</state>
-    <notes>First Release as PEAR Package
+    <notes>removed docs/CVS
     </notes>
    </release>
  </changelog>
