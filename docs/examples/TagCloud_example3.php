@@ -12,7 +12,7 @@ require_once 'HTML/TagCloud.php';
  * @version    $Id$
  */
 class MyTags extends HTML_TagCloud{
-    protected $epoc_level = array(
+    protected $epocLevel = array(
         array(
             'earliest' => array(
                 'link'    => 'ffdfdf',
@@ -62,9 +62,9 @@ class MyTags extends HTML_TagCloud{
             ),
         ),
     );
-    protected $size_suffix = 'pt';
-    protected $fontsizerange = 0;
-    protected $basefontsize = 12;
+    protected $sizeSuffix = 'pt';
+    protected $fontSizeRange = 0;
+    protected $baseFontSize = 12;
 }
 // }}}
 
