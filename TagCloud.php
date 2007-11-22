@@ -397,8 +397,11 @@ class HTML_TagCloud {
     */
     private function _calcMumEpoc()
     {
+        $array = array();
         foreach ($this->_elements as $item) {
-            $array[] = $item['timestamp'];
+            if (isset($item['timestamp'])){
+                $array[] = $item['timestamp'];
+            }
         }
         $this->_minEpoc = min($array);
         $this->_maxEpoc = max($array);
