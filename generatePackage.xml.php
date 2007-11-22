@@ -22,15 +22,17 @@ $test->setOptions(array(
     'summary' => 'generate a "tag cloud" in HTML',
     'description' => 'HTML_TagCloud enables you to generate a "tag cloud" in HTML',
     'baseinstalldir' => 'HTML',
-    'version' => '0.1.1',
-    'packagedirectory' => '/Users/shoma/HTML_TagCloud',
+    'version' => '0.1.2',
+    'packagedirectory' => dirname(__FILE__),
     'state' => 'beta',
     'filelistgenerator' => 'file',
-    'notes' => 'removed docs/CVS',
-    'ignore' => array('package.xml', 'generatePackage.xml.php', 'CVS')
+    'notes' => 'bug fix release',
+    'ignore' => array('package.xml', 'generatePackage.xml.php', 'CVS/')
     ));
 $test->addDependency('PEAR', '1.1');
 $test->addDependency('php', '5.0.0', 'ge', 'php');
 $test->addMaintainer('shomas', 'lead', 'Shoma Suzuki', 'shoma@catbot.net');
-$test->writePackageFile();
+$test->addMaintainer('bastianonken', 'lead', 'Bastian Onken', 'bastian.onken@gmx.net');
+//$test->writePackageFile();
+$test->debugPackageFile();
 ?>
