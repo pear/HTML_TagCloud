@@ -40,12 +40,12 @@
   <provides type="function" name="HTML_TagCloud::buildCSS" />
   <filelist>
    <dir name="docs">
-    <dir name="examples">
-     <file role="doc" baseinstalldir="HTML" name="TagCloud_example1.php"/>
-     <file role="doc" baseinstalldir="HTML" name="TagCloud_example2.php"/>
-     <file role="doc" baseinstalldir="HTML" name="TagCloud_example3.php"/>
-    </dir> <!-- /docs/examples -->
    </dir> <!-- /docs -->
+   <dir name="examples">
+    <file role="doc" baseinstalldir="HTML" name="TagCloud_example1.php"/>
+    <file role="doc" baseinstalldir="HTML" name="TagCloud_example2.php"/>
+    <file role="doc" baseinstalldir="HTML" name="TagCloud_example3.php"/>
+   </dir> <!-- /examples -->
    <file role="php" baseinstalldir="HTML" name="TagCloud.php"/>
   </filelist>
  </release>
