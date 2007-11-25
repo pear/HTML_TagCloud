@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0" packagerversion="1.4.5">
+<package version="1.0" packagerversion="1.6.2">
  <name>HTML_TagCloud</name>
  <summary>generate a &quot;tag cloud&quot; in HTML</summary>
  <description>HTML_TagCloud enables you to generate a &quot;tag cloud&quot; in HTML
  </description>
  <maintainers>
+  <maintainer>
+   <user>bastianonken</user>
+   <name>Bastian Onken</name>
+   <email>bastian.onken@gmx.net</email>
+   <role>lead</role>
+  </maintainer>
   <maintainer>
    <user>shomas</user>
    <name>Shoma Suzuki</name>
@@ -14,11 +20,11 @@
   </maintainer>
   </maintainers>
  <release>
-  <version>0.1.1</version>
-  <date>2006-10-03</date>
+  <version>0.1.2</version>
+  <date>2007-11-23</date>
   <license>PHP License</license>
   <state>beta</state>
-  <notes>removed docs/CVS
+  <notes>bug fix release
   </notes>
   <deps>
    <dep type="pkg" rel="ge" version="1.1" optional="no">PEAR</dep>
@@ -45,11 +51,27 @@
  </release>
  <changelog>
    <release>
+    <version>0.1.0</version>
+    <date>2006-10-02</date>
+    <license>PHP License</license>
+    <state>beta</state>
+    <notes>First Release as PEAR Package
+    </notes>
+   </release>
+   <release>
     <version>0.1.1</version>
     <date>2006-10-03</date>
     <license>PHP License</license>
     <state>beta</state>
     <notes>removed docs/CVS
+    </notes>
+   </release>
+   <release>
+    <version>0.1.2</version>
+    <date>2007-11-23</date>
+    <license>PHP License</license>
+    <state>beta</state>
+    <notes>bug fix release
     </notes>
    </release>
  </changelog>
