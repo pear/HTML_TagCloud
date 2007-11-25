@@ -95,7 +95,11 @@ http://pear.php.net/dtd/package-2.0.xsd">
    </stability>
    <date>2007-11-23</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>bug fix release</notes>
+   <notes>Bug fix release
+   
+   Fixed bug #10569 "Notice on line 401 running example2.php"
+   Fixed bug #12419 "Extended class defines wrong array parameters"
+   </notes>
   </release>
  </changelog>
 </package>
