@@ -33,11 +33,13 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <notes>bug fix release</notes>
  <contents>
   <dir name="/">
-   <dir name="examples">
-    <file baseinstalldir="HTML" name="TagCloud_example1.php" role="doc" />
-    <file baseinstalldir="HTML" name="TagCloud_example2.php" role="doc" />
-    <file baseinstalldir="HTML" name="TagCloud_example3.php" role="doc" />
-   </dir> <!-- /examples -->
+   <dir name="docs">
+    <dir name="examples">
+     <file baseinstalldir="HTML" name="TagCloud_example1.php" role="doc" />
+     <file baseinstalldir="HTML" name="TagCloud_example2.php" role="doc" />
+     <file baseinstalldir="HTML" name="TagCloud_example3.php" role="doc" />
+    </dir> <!-- /examples -->
+   </dir> <!--  /docs -->
    <file baseinstalldir="HTML" name="TagCloud.php" role="php" />
   </dir> <!-- / -->
  </contents>
