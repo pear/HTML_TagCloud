@@ -21,6 +21,7 @@ $packagexml->setOptions(array(
 	'packagedirectory' => dirname(__FILE__),
 	'filelistgenerator' => 'cvs', // generate from cvs, use file for directory
 	'ignore' => array('generatePackage.xml.php'),
+	'packagefile' => 'package2.xml',
 	'dir_roles' => array('docs' => 'doc')
 ));
 $packagexml->setPackage('HTML_TagCloud');
