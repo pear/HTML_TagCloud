@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package version="2.0" packagerversion="1.6.2"
-    xmlns="http://pear.php.net/dtd/package-2.0"
-    xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
-http://pear.php.net/dtd/tasks-1.0.xsd
-http://pear.php.net/dtd/package-2.0
-http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.6.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_TagCloud</name>
  <channel>pear.php.net</channel>
  <summary>generate a &quot;tag cloud&quot; in HTML</summary>
@@ -23,47 +19,40 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <email>shoma@catbot.net</email>
   <active>no</active>
  </lead>
- <date>2007-11-25</date>
- <time>14:30:41</time>
+ <date>2007-12-11</date>
+ <time>20:05:47</time>
  <version>
-  <release>0.1.2</release>
-  <api>0.1.2</api>
+  <release>0.1.3</release>
+  <api>0.1.3</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>Bug fix release
+ <notes>New features added
 
-Fixed bug #10569 "Notice on line 401 running example2.php"
-Fixed bug #12419 "Extended class defines wrong array parameters"
- </notes>
+Added requested feature #12417 &quot;Adding weighted limitation of elements&quot;
+ - </notes>
  <contents>
-  <dir name="/">
-   <dir name="docs">
-    <dir name="examples">
-     <file baseinstalldir="HTML" name="TagCloud_example1.php" role="doc" />
-     <file baseinstalldir="HTML" name="TagCloud_example2.php" role="doc" />
-     <file baseinstalldir="HTML" name="TagCloud_example3.php" role="doc" />
-    </dir> <!-- /examples -->
-   </dir> <!--  /docs -->
-   <file baseinstalldir="HTML" name="TagCloud.php" role="php" />
-  </dir> <!-- / -->
+  <dir baseinstalldir="HTML" name="/">
+   <file baseinstalldir="HTML" md5sum="78f33900d09b154dc565a933ded39088" name="docs/examples/TagCloud_example1.php" role="doc" />
+   <file baseinstalldir="HTML" md5sum="356c4c0631c0b72ed742a5cd6cf8776b" name="docs/examples/TagCloud_example2.php" role="doc" />
+   <file baseinstalldir="HTML" md5sum="f7ddababd1b502eee02af1aa63993aba" name="docs/examples/TagCloud_example3.php" role="doc" />
+   <file baseinstalldir="HTML" md5sum="9f75f7a860ad4948e6116bebe3063376" name="TagCloud.php" role="php" />
+  </dir>
  </contents>
  <dependencies>
   <required>
    <php>
-    <min>5.0.0</min>
+    <min>5.1.0</min>
    </php>
    <pearinstaller>
     <min>1.4.0b1</min>
    </pearinstaller>
-   <package>
-    <name>PEAR</name>
-    <channel>pear.php.net</channel>
-    <min>1.1</min>
-   </package>
+   <extension>
+    <name>date</name>
+   </extension>
   </required>
  </dependencies>
  <phprelease />
@@ -107,9 +96,24 @@ Fixed bug #12419 "Extended class defines wrong array parameters"
    <license uri="http://www.php.net/license">PHP License</license>
    <notes>Bug fix release
 
-Fixed bug #10569 "Notice on line 401 running example2.php"
-Fixed bug #12419 "Extended class defines wrong array parameters"
-   </notes>
+Fixed bug #10569 &quot;Notice on line 401 running example2.php&quot;
+Fixed bug #12419 &quot;Extended class defines wrong array parameters&quot;</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.3</release>
+    <api>0.1.3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2007-12-11</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>New features added
+
+Added requested feature #12417 &quot;Adding weighted limitation of elements&quot;
+ - </notes>
   </release>
  </changelog>
 </package>
