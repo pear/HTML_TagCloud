@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.6.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package version="2.0" packagerversion="1.6.2"
+    xmlns="http://pear.php.net/dtd/package-2.0"
+    xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
 http://pear.php.net/dtd/tasks-1.0.xsd
 http://pear.php.net/dtd/package-2.0
 http://pear.php.net/dtd/package-2.0.xsd">
@@ -30,7 +34,11 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>bug fix release</notes>
+ <notes>Bug fix release
+
+Fixed bug #10569 "Notice on line 401 running example2.php"
+Fixed bug #12419 "Extended class defines wrong array parameters"
+ </notes>
  <contents>
   <dir name="/">
    <dir name="docs">
@@ -98,9 +106,9 @@ http://pear.php.net/dtd/package-2.0.xsd">
    <date>2007-11-23</date>
    <license uri="http://www.php.net/license">PHP License</license>
    <notes>Bug fix release
-   
-   Fixed bug #10569 "Notice on line 401 running example2.php"
-   Fixed bug #12419 "Extended class defines wrong array parameters"
+
+Fixed bug #10569 "Notice on line 401 running example2.php"
+Fixed bug #12419 "Extended class defines wrong array parameters"
    </notes>
   </release>
  </changelog>
