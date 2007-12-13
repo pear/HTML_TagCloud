@@ -7,9 +7,9 @@
  *
  * PHP version 5
  *
- * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
  * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
  *
@@ -41,7 +41,6 @@
  * @link      http://pear.php.net/package/HTML_TagCloud
  * @see       http://search.cpan.org/~lyokato/HTML-TagCloud-Extended-0.10/lib/HTML/TagCloud/Extended.pm
  * @since     Class available since Release 0.1.0
- *
  */
 class HTML_TagCloud
 {
@@ -247,7 +246,6 @@ class HTML_TagCloud
      * @return string HTML and CSS
      *
      * @access public
-     * @see HTML_TagCloud::_buidHTMLTags 
      * @since Method available since Release 0.1.0
      */
     public function buildAll($param = array())
@@ -269,7 +267,9 @@ class HTML_TagCloud
      * @return string HTML and CSS
      *
      * @access public
+     * @see HTML_TagCloud::_buildAll 
      * @since Method available since Release 0.1.0
+     * @deprecated Method deprecated in Release 0.1.3
      */
     public function html_and_css($param = array())
     {
@@ -381,6 +381,9 @@ class HTML_TagCloud
 
     /**
      * create a Element of HTML part
+     * 
+     * deprecated due to wrong function naming: one leading underscore must only
+     * be used in private context.
      *
      * @param array  $tag      tagname
      * @param string $type     css class of time line param
@@ -389,9 +392,31 @@ class HTML_TagCloud
      * @return string a Element of Tag HTML
      *
      * @access protected
+     * @see HTML_TagCloud::createHTMLTag()
      * @since Method available since Release 0.1.0
+     * @deprecated Method deprecated in Release 0.1.3
      */
     protected function _createHTMLTag($tag, $type, $fontSize)
+    {
+        return createHTMLTag($tag, $type, $fontSize);
+    }
+
+    // }}}
+    // {{{ protected function createHTMLTag()
+
+    /**
+     * create a Element of HTML part
+     *
+     * @param array  $tag      tagname
+     * @param string $type     css class of time line param
+     * @param float  $fontSize size of the font for this tag
+     *
+     * @return string a Element of Tag HTML
+     *
+     * @access protected
+     * @since Method available since Release 0.1.3
+     */
+    protected function createHTMLTag($tag, $type, $fontSize)
     {
         return '<a href="'. $tag['url'] . '" style="font-size: '. 
                $fontSize . $this->sizeSuffix . ';" class="'.  $type .'">' .
