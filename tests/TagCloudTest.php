@@ -3,7 +3,7 @@
 /**
  * TagCloudTest.php (created on 26.11.2007 12:33:43)
  *
- * <file description>
+ * TestCase for HTML_TagCloud
  *
  * PHP version 5
  *
@@ -13,26 +13,22 @@
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
  *
- * @category  <category>
- * @package   <package>
+ * @category  HTML
+ * @package   HTML_TagCloud
  * @author    Bastian Onken <bastian.onken@gmx.net>
  * @copyright 2007 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
- * @link      http://<package url>
- * @since     File available since Release <release>
+ * @link      http://pear.php.net/package/HTML_TagCloud
+ * @since     File available since Release 0.1.3
  */
 
-require_once 'HTML/TagCloud.php';
+require_once '../TagCloud.php';
 require_once 'PHPUnit/Framework.php';
 
 class TagCloudTest extends PHPUnit_Framework_TestCase {
 
     public $HTML_TagCloud;
-
-    function TagCloudTest($name) {
-        $this->PHPUnit_TestCase($name);
-    }
 
     // called before the test functions will be executed
     // this function is defined in PHPUnit_TestCase and overwritten

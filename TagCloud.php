@@ -398,7 +398,7 @@ class HTML_TagCloud
      */
     protected function _createHTMLTag($tag, $type, $fontSize)
     {
-        return createHTMLTag($tag, $type, $fontSize);
+        return $this->createHTMLTag($tag, $type, $fontSize);
     }
 
     // }}}
