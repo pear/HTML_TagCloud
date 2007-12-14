@@ -1,6 +1,17 @@
 <?php
-/*
+
+/**
+ * generatePackage.xml.php
+ *
  * Generates the package.xml file (version 2)
+ *
+ * PHP version 5
+ *
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
  *
  * @category  HTML
  * @package   HTML_TagCloud
@@ -17,12 +28,12 @@ PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
 $packagexml = new PEAR_PackageFileManager2();
 $packagexml->setOptions(array(
-	'baseinstalldir' => 'HTML',
-	'packagedirectory' => dirname(__FILE__),
-	'filelistgenerator' => 'cvs', // generate from cvs, use file for directory
-	'ignore' => array('generatePackage.xml.php'),
-	'packagefile' => 'package2.xml',
-	'dir_roles' => array('docs' => 'doc')
+    'baseinstalldir' => 'HTML',
+    'packagedirectory' => dirname(__FILE__),
+    'filelistgenerator' => 'cvs', // generate from cvs, use file for directory
+    'ignore' => array('generatePackage.xml.php'),
+    'packagefile' => 'package2.xml',
+    'dir_roles' => array('docs' => 'doc')
 ));
 $packagexml->setPackage('HTML_TagCloud');
 $packagexml->setSummary('generate a "tag cloud" in HTML');
