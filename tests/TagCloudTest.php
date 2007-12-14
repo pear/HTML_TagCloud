@@ -26,25 +26,54 @@
 require_once '../TagCloud.php';
 require_once 'PHPUnit/Framework.php';
 
-class TagCloudTest extends PHPUnit_Framework_TestCase {
+/**
+ * TagCloudTest
+ *
+ * Tests HTML_TagCloud class
+ *
+ * @category  HTML
+ * @package   HTML_TagCloud
+ * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @copyright 2007 Bastian Onken
+ * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version   Release: @package_version@
+ * @link      http://pear.php.net/package/HTML_TagCloud
+ * @since     Class available since Release 0.1.3
+ */
+class TagCloudTest extends PHPUnit_Framework_TestCase
+{
 
     public $HTML_TagCloud;
 
-    // called before the test functions will be executed
-    // this function is defined in PHPUnit_TestCase and overwritten
-    // here
-    function setUp() {
+    /**
+     * called before the test functions will be executed
+     * this function is defined in PHPUnit_TestCase and overwritten here
+     *
+     * @return void
+     */
+    function setUp()
+    {
         $this->HTML_TagCloud = new HTML_TagCloud();
     }
 
-    // called after the test functions are executed
-    // this function is defined in PHPUnit_TestCase and overwritten
-    // here
-    function tearDown() {
+    /**
+     * called after the test functions are executed
+     * this function is defined in PHPUnit_TestCase and overwritten here
+     *
+     * @return void
+     */
+    function tearDown()
+    {
         unset($this->HTML_TagCloud);
     }
 
-    function testAddElement() {
+    /**
+     * test the addElement function
+     *
+     * @return void
+     */
+    function testAddElement()
+    {
         $this->HTML_TagCloud->addElement('Tag');
         $result = $this->HTML_TagCloud->buildHTML();
         $this->assertTrue(!empty($result));
