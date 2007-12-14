@@ -104,6 +104,7 @@ $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
 $packagexml->addReplacement('TagCloud.php', 'package-info', '@package_version@', 'version');
+$packagexml->addReplacement('tests/TagCloudTest.php', 'package-info', '@package_version@', 'version');
 $packagexml->addRelease(); // set up as current release at the release section
 
 // get current release dependencies for PHP
