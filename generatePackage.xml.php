@@ -39,7 +39,7 @@ $packagexml->setPackage('HTML_TagCloud');
 $packagexml->setSummary('generate a "tag cloud" in HTML');
 $packagexml->setDescription('HTML_TagCloud enables you to generate a "tag cloud" in HTML');
 $packagexml->setChannel('pear.php.net');
-$packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken', 'bastian.onken@gmx.net');
+$packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken', 'bastian.onken@gmx.net', 'yes');
 $packagexml->addMaintainer('lead', 'shomas', 'Shoma Suzuki', 'shoma@catbot.net', 'no');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
@@ -54,7 +54,6 @@ $packagexml->setReleaseStability('beta');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-// put in Changelog
 $packagexml->setDate('2006-10-02');
 $packagexml->setChangelogEntry('0.1.0', $packagexml->generateChangeLogEntry());
 
@@ -69,7 +68,6 @@ $packagexml->setReleaseStability('beta');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-// put in Changelog
 $packagexml->setDate('2006-10-03');
 $packagexml->setChangelogEntry('0.1.1', $packagexml->generateChangeLogEntry());
 
@@ -87,7 +85,6 @@ $packagexml->setReleaseStability('beta');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-// put in Changelog
 $packagexml->setDate('2006-11-25');
 $packagexml->setChangelogEntry('0.1.2', $packagexml->generateChangeLogEntry());
 
@@ -106,10 +103,10 @@ $packagexml->setReleaseVersion('0.1.3');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-// set as current release
-$packagexml->addRelease(); // set up a release section
+$packagexml->addReplacement('TagCloud.php', 'package-info', '@package_version@', '0.1.3');
+$packagexml->addRelease(); // set up as current release at the release section
 
-// get current release dependencies
+// get current release dependencies for PHP
 $options = array(
     'ignore_functions' => array(),
     'ignore_files' => array()
@@ -122,13 +119,16 @@ if (PEAR::isError($available)) {
 }
 PEAR::popErrorHandling();
 
+// set up current release dependency for the PEAR installer
 $packagexml->setPearinstallerDep('1.4.0b1');
 
-$packagexml->generateContents(); // create the <contents> tag
+// finally create the <contents> tag
+$packagexml->generateContents();
 
 // to additionally generate a version 1 package.xml file
 //$pkg = &$packagexml->exportCompatiblePackageFile1(); // get a PEAR_PackageFile object
 
+// do the output: if make was set write to file, otherwise just print to screen
 if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
     //$pkg->writePackageFile();
     $packagexml->writePackageFile();
