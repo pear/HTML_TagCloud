@@ -35,12 +35,32 @@ $packagexml->setOptions(array(
     'packagefile' => 'package2.xml',
     'dir_roles' => array('docs' => 'doc')
 ));
-$packagexml->setPackage('HTML_TagCloud');
-$packagexml->setSummary('generate a "tag cloud" in HTML');
-$packagexml->setDescription('HTML_TagCloud enables you to generate a "tag cloud" in HTML');
 $packagexml->setChannel('pear.php.net');
-$packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken', 'bastian.onken@gmx.net', 'yes');
-$packagexml->addMaintainer('lead', 'shomas', 'Shoma Suzuki', 'shoma@catbot.net', 'no');
+$packagexml->setPackage('HTML_TagCloud');
+$summary = <<<EOT
+Generate a "Tag Cloud" in HTML by setting up tags that can be extended with
+URLs, customized colors and different font-sizes.
+EOT;
+$packagexml->setSummary($summary);
+$description = <<<EOT
+HTML_TagCloud enables you to generate a "Tag Cloud" in HTML.
+
+A Tag Cloud is a list of tags (mostly existing of one word) that are weighted in
+some way which is visualized with different font-sizes and colors. A more less
+used synonym for a Tag Cloud that came up before Web 2.0 is the term "weightet
+list". Popular examples of Tag Clouds and their use can be found in action at
+pages like Flickr, Del.icio.us and Technorati. A nice overview on what a Tag
+Cloud can actually do can be found at WikiPedia:
+http://wikipedia.org/wiki/Tag_cloud
+
+PEAR HTML_TagClouds goal is to provide an easy to implement Tag Cloud for any
+PHP-based web application with an easy to configure API.
+EOT;
+$packagexml->setDescription($description);
+$packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken',
+                           'bastian.onken@gmx.net', 'yes');
+$packagexml->addMaintainer('lead', 'shomas', 'Shoma Suzuki',
+                           'shoma@catbot.net', 'no');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
 // Changelog: Release 0.1.0
@@ -103,8 +123,10 @@ $packagexml->setReleaseVersion('0.1.3');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->addReplacement('TagCloud.php', 'package-info', '@package_version@', 'version');
-$packagexml->addReplacement('tests/TagCloudTest.php', 'package-info', '@package_version@', 'version');
+$packagexml->addReplacement('TagCloud.php', 'package-info',
+                            '@package_version@', 'version');
+$packagexml->addReplacement('tests/TagCloudTest.php', 'package-info',
+                            '@package_version@', 'version');
 $packagexml->addRelease(); // set up as current release at the release section
 
 // get current release dependencies for PHP
@@ -115,7 +137,7 @@ $options = array(
 PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
 $available = $packagexml->detectDependencies($options);
 if (PEAR::isError($available)) {
-    // PHP_CompatInfo is not installed on your system, then fix PHP dep with PFM2
+    // PHP_CompatInfo is not installed, set up PHP dep manually
     $packagexml->setPhpDep('5.1.0');
 }
 PEAR::popErrorHandling();
@@ -126,11 +148,12 @@ $packagexml->setPearinstallerDep('1.4.0b1');
 // finally create the <contents> tag
 $packagexml->generateContents();
 
-// to additionally generate a version 1 package.xml file
-//$pkg = &$packagexml->exportCompatiblePackageFile1(); // get a PEAR_PackageFile object
+// to additionally generate a version 1 xml file get a PEAR_PackageFile object
+//$pkg = &$packagexml->exportCompatiblePackageFile1();
 
 // do the output: if make was set write to file, otherwise just print to screen
-if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
+if (isset($_GET['make']) 
+    || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
     //$pkg->writePackageFile();
     $packagexml->writePackageFile();
 } else {
