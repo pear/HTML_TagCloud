@@ -31,7 +31,7 @@ $packagexml->setOptions(array(
     'baseinstalldir' => 'HTML',
     'packagedirectory' => dirname(__FILE__),
     'filelistgenerator' => 'cvs', // generate from cvs, use file for directory
-    'ignore' => array('generatePackage.xml.php'),
+    'ignore' => array(__FILE__),
     'packagefile' => 'package2.xml',
     'dir_roles' => array('docs' => 'doc')
 ));
@@ -123,10 +123,8 @@ $packagexml->setReleaseVersion('0.1.3');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->addReplacement('TagCloud.php', 'package-info',
-                            '@package_version@', 'version');
-$packagexml->addReplacement('tests/TagCloudTest.php', 'package-info',
-                            '@package_version@', 'version');
+$packagexml->addGlobalReplacement('package-info', '@package_version@',
+                                  'version');
 $packagexml->addRelease(); // set up as current release at the release section
 
 // get current release dependencies for PHP
