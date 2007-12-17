@@ -113,9 +113,12 @@ $packagexml->setChangelogEntry('0.1.2', $packagexml->generateChangeLogEntry());
 // Current Release
 $notes = <<<EOT
 New features added
+ + Added requested feature #12417 "Adding weighted limitation of elements"
 
-Added requested feature #12417 "Adding weighted limitation of elements"
- - 
+Fixed issues
+ - If cloud consists of one tag and epocLevel was set up by extending the class
+   member, the default value for the css class may be incorrect if it was not
+   "latest".
 EOT;
 $packagexml->setAPIVersion('0.1.3');
 $packagexml->setAPIStability('beta');
@@ -150,7 +153,7 @@ $packagexml->generateContents();
 //$pkg = &$packagexml->exportCompatiblePackageFile1();
 
 // do the output: if make was set write to file, otherwise just print to screen
-if (isset($_GET['make']) 
+if (isset($_GET['make'])
     || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
     //$pkg->writePackageFile();
     $packagexml->writePackageFile();
