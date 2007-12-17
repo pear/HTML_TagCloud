@@ -27,7 +27,7 @@
 // {{{ class HTML_TagCloud
 
 /**
- * HTML Tag Cloud 
+ * HTML Tag Cloud
  *
  * HTML_TagCloud enables you to generate a "tag cloud" in HTML.
  *
@@ -90,7 +90,7 @@ class HTML_TagCloud
                 'visited' => '9999cc',
                 'hover'   => '9999cc',
                 'active'  => '9999cc',
-            ), 
+            ),
         ),
         array(
             'later' => array(
@@ -160,7 +160,7 @@ class HTML_TagCloud
      *
      * @param int $baseFontSize  base font size of output tag (option)
      * @param int $fontSizeRange font size range
-     * 
+     *
      * @access public
      * @since Method available since Release 0.1.0
      */
@@ -188,7 +188,7 @@ class HTML_TagCloud
      * @param int    $timestamp unixtimestamp
      *
      * @return void
-     * 
+     *
      * @access public
      * @since Method available since Release 0.1.0
      */
@@ -267,7 +267,7 @@ class HTML_TagCloud
      * @return string HTML and CSS
      *
      * @access public
-     * @see HTML_TagCloud::_buildAll 
+     * @see HTML_TagCloud::_buildAll
      * @since Method available since Release 0.1.0
      * @deprecated Method deprecated in Release 0.1.3
      */
@@ -340,7 +340,7 @@ class HTML_TagCloud
             return array();
         } elseif ($this->total == 1) {
             $tag = $this->_elements[0];
-            return $this->_createHTMLTag($tag, 'latest', $this->baseFontSize);
+            return $this->_createHTMLTag($tag, key($this->epocLevel[count($this->epocLevel)-1]), $this->baseFontSize);
         }
 
         $limit = array_key_exists('limit', $param) ? $param['limit'] : 0;
@@ -356,7 +356,7 @@ class HTML_TagCloud
         }
 
         if ($this->_maxEpoc != $this->_minEpoc) {
-            $this->_epocFactor = count($this->epocLevel) 
+            $this->_epocFactor = count($this->epocLevel)
                                    / (sqrt($this->_maxEpoc) - sqrt($this->_minEpoc));
         } else {
             $this->_epocFactor = 1;
@@ -381,7 +381,7 @@ class HTML_TagCloud
 
     /**
      * create a Element of HTML part
-     * 
+     *
      * deprecated due to wrong function naming: one leading underscore must only
      * be used in private context.
      *
@@ -418,7 +418,7 @@ class HTML_TagCloud
      */
     protected function createHTMLTag($tag, $type, $fontSize)
     {
-        return '<a href="'. $tag['url'] . '" style="font-size: '. 
+        return '<a href="'. $tag['url'] . '" style="font-size: '.
                $fontSize . $this->sizeSuffix . ';" class="'.  $type .'">' .
                htmlspecialchars($tag['name']) . '</a>&nbsp;'. "\n";
     }
@@ -569,7 +569,7 @@ class HTML_TagCloud
 // }}}
 
 /*
- * vim: set expandtab tabstop=4 shiftwidth=4 
+ * vim: set expandtab tabstop=4 shiftwidth=4
  * vim600: foldmethod=marker
  * Local variables:
  * tab-width: 4
