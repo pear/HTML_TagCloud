@@ -24,7 +24,7 @@
  * @todo      fix issue with setting up basefonsize and fontsizerange on extending class (doesn't get recognized when instance isn't constructed with these values; so they are useless in most of the cases)
  */
 
-require_once '../../TagCloud.php';
+require_once 'HTML/TagCloud.php';
 
 /**
  * MyTagsAdvanced extends HTML_TagCloud
@@ -124,7 +124,7 @@ class MyTagsDynamicColors extends HTML_TagCloud
     }
 }
 
-require_once 'd:/xampplite/php/pear/Image/Color.php';
+require_once 'Image/Color.php';
 
 $imageColor = new Image_Color();
 $imageColor->setWebSafe(false);
