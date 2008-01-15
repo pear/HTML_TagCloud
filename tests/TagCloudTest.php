@@ -23,7 +23,7 @@
  * @since     File available since Release 0.1.3
  */
 
-require_once '../TagCloud.php';
+require_once 'HTML/TagCloud.php';
 require_once 'PHPUnit/Framework.php';
 
 /**
