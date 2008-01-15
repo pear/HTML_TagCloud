@@ -38,23 +38,32 @@ $packagexml->setOptions(array(
 $packagexml->setChannel('pear.php.net');
 $packagexml->setPackage('HTML_TagCloud');
 $summary = <<<EOT
-Generate a "Tag Cloud" in HTML by setting up tags that can be extended with
-URLs, customized colors and different font-sizes.
+Generate a "Tag Cloud" in HTML and visualize clickable tags by their frequenzy.
+Additionally visualizes each tag's age.
 EOT;
 $packagexml->setSummary($summary);
 $description = <<<EOT
-HTML_TagCloud enables you to generate a "Tag Cloud" in HTML.
+This package can be used to generate tag clouds. The output is HTML and CSS.
 
-A Tag Cloud is a list of tags (mostly existing of one word) that are weighted in
-some way which is visualized with different font-sizes and colors. A more less
-used synonym for a Tag Cloud that came up before Web 2.0 is the term "weightet
-list". Popular examples of Tag Clouds and their use can be found in action at
-pages like Flickr, Del.icio.us and Technorati. A nice overview on what a Tag
-Cloud can actually do can be found at WikiPedia:
+A Tag Cloud is an visual representation of list of so-called "tags" or keywords,
+that do have a different font size depending on how often they occur on the
+page/blog. A less used synonym for a Tag Cloud that came up before Web 2.0 is
+the term "weightet list". Popular examples of Tag Clouds and their use can be
+found in action at pages like Flickr, Del.icio.us and Technorati. A nice
+overview on what a Tag Cloud can actually do can be found at WikiPedia:
 http://wikipedia.org/wiki/Tag_cloud
 
-PEAR HTML_TagClouds goal is to provide an easy to implement Tag Cloud for any
-PHP-based web application with an easy to configure API.
+This package does not only visualize frequency, but also timeline infomation.
+The newer the tag is, the deeper its color will be; older tags will have a
+lighter color.
+
+The goal of "HTML_TagCloud" is to provide an easy to implement/configureable Tag
+Cloud solution that is suitable for any PHP-based webapp.
+
+Features:
+ - set up each tag's name, URL, frequenzy, age
+ - customizable colors
+ - customizable font-sizes
 EOT;
 $packagexml->setDescription($description);
 $packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken',
