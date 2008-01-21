@@ -31,7 +31,7 @@ $packagexml->setOptions(array(
     'baseinstalldir' => 'HTML',
     'packagedirectory' => dirname(__FILE__),
     'filelistgenerator' => 'cvs', // generate from cvs, use file for directory
-    'ignore' => array(__FILE__),
+    'ignore' => array(__FILE__, 'misc/'),
     'packagefile' => 'package2.xml',
     'dir_roles' => array('docs' => 'doc')
 ));
@@ -121,14 +121,18 @@ $packagexml->setChangelogEntry('0.1.2', $packagexml->generateChangeLogEntry());
 
 // Current Release
 $notes = <<<EOT
-New features added
- + Added requested feature #12417 "Adding weighted limitation of elements"
+QA release
+ - Heavily applied PEAR Coding Standards
 
 Fixed issues
- - If cloud consists of one tag and epocLevel was set up by extending the class
-   member, the default value for the css class may be incorrect if it was not
-   "latest".
+ - Hard-wired css class name: If cloud consists of one tag and epocLevel was set
+   up by extending the class member, the default value for the css class may be
+   incorrect if it was not "latest".
 EOT;
+/*$notes = <<<EOT
+New features added
+ - Added requested feature #12417 "Adding weighted limitation of elements"
+EOT;*/
 $packagexml->setAPIVersion('0.1.3');
 $packagexml->setAPIStability('beta');
 $packagexml->setReleaseVersion('0.1.3');
