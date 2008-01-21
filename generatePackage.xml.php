@@ -128,6 +128,7 @@ Fixed issues
  - Hard-wired css class name: If cloud consists of one tag and epocLevel was set
    up by extending the class member, the default value for the css class may be
    incorrect if it was not "latest".
+ - Returned value of _buidHTMLTags was of wrong type if no tags were set up
 EOT;
 /*$notes = <<<EOT
 New features added
