@@ -338,7 +338,7 @@ class HTML_TagCloud
         $this->total = count($this->_elements);
         // no tags elements
         if ($this->total == 0) {
-            return array();
+            return 'not enough data';
         } elseif ($this->total == 1) {
             $tag = $this->_elements[0];
             return $this->_createHTMLTag($tag,
