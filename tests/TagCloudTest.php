@@ -84,12 +84,25 @@ class TagCloudTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    function testAddElements() {
+    function testAddElements()
+    {
         $tags = array(
             array('name' => 'tag1'),
-            array('name' => 'tag2', 'url' => 'http://example.org'),
-            array('name' => 'tag3', 'url' => 'http://example.org', 'count' => 3),
-            array('name' => 'tag4', 'url' => 'http://example.org', 'count' => 4, 'timestamp' => time()),
+            array(
+                'name' => 'tag2',
+                'url'  => 'http://example.org'
+            ),
+            array(
+                'name'  => 'tag3',
+                'url'   => 'http://example.org',
+                'count' => 3
+            ),
+            array(
+                'name'      => 'tag4',
+                'url'       => 'http://example.org',
+                'count'     => 4,
+                'timestamp' => time()
+            ),
         );
         $this->HTML_TagCloud->addElements($tags);
         $result = $this->HTML_TagCloud->buildHTML();
@@ -101,7 +114,8 @@ class TagCloudTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    function testBuildCSS() {
+    function testBuildCSS()
+    {
         $expected = <<<EOT
 a.earliest:link {text-decoration: none; color: #cccccc;}
 a.earliest:visited {text-decoration: none; color: #cccccc;}
@@ -121,7 +135,8 @@ a.latest:hover {text-decoration: none; color: #0000ff;}
 a.latest:active {text-decoration: none; color: #0000ff;}
 
 EOT;
-        $this->assertEquals($expected, $this->HTML_TagCloud->buildCSS(), 'my message');
+        $this->assertEquals($expected, $this->HTML_TagCloud->buildCSS(),
+                            'my message');
     }
 
     /**
@@ -129,7 +144,8 @@ EOT;
      *
      * @return void
      */
-    function testBuildHTML() {
+    function testBuildHTML()
+    {
         $expected = <<<EOT
 <div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag0</a>&nbsp;
 <a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
@@ -147,7 +163,8 @@ EOT;
      *
      * @return void
      */
-    function testBuildAll() {
+    function testBuildAll()
+    {
         $expected = <<<EOT
 <style type="text/css">
 a.earliest:link {text-decoration: none; color: #cccccc;}
@@ -183,7 +200,8 @@ EOT;
      *
      * @return void
      */
-    function testClearElements() {
+    function testClearElements()
+    {
         $this->HTML_TagCloud->clearElements();
         $result = $this->HTML_TagCloud->buildHTML();
         $this->assertTrue(empty($result));
