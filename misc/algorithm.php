@@ -24,9 +24,9 @@
  */
 
 require_once 'HTML/TagCloud.php';
-require_once('Image/Color.php');
+require_once 'Image/Color.php';
 
-$max = 100;
+$max  = 100;
 $tags = array(
     'design' => rand(1, $max),
     'widgets' => rand(1, $max),
@@ -42,26 +42,41 @@ $tags = array(
 );
 arsort($tags);
 $thresholds = 4;
-$color1 = '0048FF';
-//$color1 = '0028FF';
-$color2 = 'FFFFFF';
-$bgColor = 'D6DDFF';
+$color1     = '0048FF'; //'0028FF'
+$color2     = 'FFFFFF';
+$bgColor    = 'D6DDFF';
 
 $graphScale = 100 / max($tags);
 
-function linearize(Array $tags) {
+/**
+ * linearize tag counts
+ *
+ * @param array $tags Array of tags; tag name is key, tag count is value
+ *
+ * @return array Linearized tag array
+ */
+function linearize(Array $tags)
+{
     asort($tags);
     $linearizedTags = array();
-    $f = min($tags);
+    $f              = min($tags);
     foreach ($tags as $tag => $count) {
         $linearizedTags[$tag] = $f;
-        $f += (max($tags) - min($tags)) / (count($tags) - 1);
+        $f                   += (max($tags) - min($tags)) / (count($tags) - 1);
     }
     arsort($linearizedTags);
     return $linearizedTags;
 }
 
-function logarithmicSmoothing(Array $tags) {
+/**
+ * smooth tag counts logarithmic
+ *
+ * @param array $tags Array of tags; tag name is key, tag count is value
+ *
+ * @return array Logarithmically smoothed tag array
+ */
+function logarithmicSmoothing(Array $tags)
+{
     global $graphScale;
     foreach ($tags as $tag => $count) {
         //$tags[$tag] = log($count + 1, max($tags)) * max($tags);
@@ -70,7 +85,15 @@ function logarithmicSmoothing(Array $tags) {
     return $tags;
 }
 
-function googleChartTextEncode(Array $tags) {
+/**
+ * encode tag array for googleChart (TextEncode)
+ *
+ * @param array $tags Array of tags; tag name is key, tag count is value
+ *
+ * @return string encoded string (TextEncode format)
+ */
+function googleChartTextEncode(Array $tags)
+{
     global $graphScale;
     foreach ($tags as $tag => $count) {
         $tags[$tag] = number_format(($count * $graphScale), 1);
@@ -85,7 +108,7 @@ $data = array(
 );
 
 $numberOfColorsToBuild = count($data);
-$imageColor = new Image_Color();
+$imageColor            = new Image_Color();
 $imageColor->setWebSafe(false);
 $imageColor->setColors($color1, $color2);
 $colors = $imageColor->getRange($numberOfColorsToBuild);
@@ -122,7 +145,7 @@ echo '<?xml version="1.0"?>';
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<title>PEAR HTML Tag Cloud playground</title>
+<title>PEAR HTML_TagCloud playground</title>
 <link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/2.4.1/build/datatable/assets/skins/sam/datatable.css"/>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.4.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.4.1/build/element/element-beta-min.js"></script>
