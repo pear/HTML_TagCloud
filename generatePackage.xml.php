@@ -121,14 +121,19 @@ $packagexml->setChangelogEntry('0.1.2', $packagexml->generateChangeLogEntry());
 
 // Current Release
 $notes = <<<EOT
-QA release
+Quality review release
  - Heavily applied PEAR Coding Standards
+ - extended unit tests
 
 Fixed issues
- - Hard-wired css class name: If cloud consists of one tag and epocLevel was set
-   up by extending the class member, the default value for the css class may be
-   incorrect if it was not "latest".
- - Returned value of _buidHTMLTags was of wrong type if no tags were set up
+ - Fixed hard-wired css class name: If cloud consists of one tag and epocLevel
+   was set up by extending the class member, the default value for the css class
+   may be incorrect if it was not "latest". This behaviour has been changed. The
+   value for the css class is now based on the last value of a _epocLevel key
+   string.
+ - Returned value of _buidHTMLTags was of wrong type if no tags were set up.
+   This behaviour has been changed. An empty tag cloud will now be displayed
+   with text "not enough data" instead of returning an empty string.
 EOT;
 /*$notes = <<<EOT
 New features added
