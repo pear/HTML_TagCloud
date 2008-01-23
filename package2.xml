@@ -5,8 +5,29 @@
     http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_TagCloud</name>
  <channel>pear.php.net</channel>
- <summary>generate a &quot;tag cloud&quot; in HTML</summary>
- <description>HTML_TagCloud enables you to generate a &quot;tag cloud&quot; in HTML</description>
+ <summary>Generate a &quot;Tag Cloud&quot; in HTML and visualize clickable tags by their frequenzy.
+Additionally visualizes each tag&apos;s age.</summary>
+ <description>This package can be used to generate tag clouds. The output is HTML and CSS.
+
+A Tag Cloud is an visual representation of list of so-called &quot;tags&quot; or keywords,
+that do have a different font size depending on how often they occur on the
+page/blog. A less used synonym for a Tag Cloud that came up before Web 2.0 is
+the term &quot;weightet list&quot;. Popular examples of Tag Clouds and their use can be
+found in action at pages like Flickr, Del.icio.us and Technorati. A nice
+overview on what a Tag Cloud can actually do can be found at WikiPedia:
+http://wikipedia.org/wiki/Tag_cloud
+
+This package does not only visualize frequency, but also timeline infomation.
+The newer the tag is, the deeper its color will be; older tags will have a
+lighter color.
+
+The goal of &quot;HTML_TagCloud&quot; is to provide an easy to implement/configureable Tag
+Cloud solution that is suitable for any PHP-based webapp.
+
+Features:
+ - set up each tag&apos;s name, URL, frequenzy, age
+ - customizable colors
+ - customizable font-sizes</description>
  <lead>
   <name>Bastian Onken</name>
   <user>bastianonken</user>
@@ -19,8 +40,8 @@
   <email>shoma@catbot.net</email>
   <active>no</active>
  </lead>
- <date>2007-12-11</date>
- <time>20:05:47</time>
+ <date>2008-01-23</date>
+ <time>17:40:04</time>
  <version>
   <release>0.1.3</release>
   <api>0.1.3</api>
@@ -30,16 +51,42 @@
   <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>New features added
+ <notes>Quality review release
+ - Heavily applied PEAR Coding Standards
+ - extended unit tests
 
-Added requested feature #12417 &quot;Adding weighted limitation of elements&quot;
- - </notes>
+Fixed issues
+ - Fixed hard-wired css class name: If cloud consists of one tag and epocLevel
+   was set up by extending the class member, the default value for the css class
+   may be incorrect if it was not &quot;latest&quot;. This behaviour has been changed. The
+   value for the css class is now based on the last value of a _epocLevel key
+   string.
+ - Returned value of _buidHTMLTags was of wrong type if no tags were set up.
+   This behaviour has been changed. An empty tag cloud will now be displayed
+   with text &quot;not enough data&quot; instead of returning an empty string.</notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
-   <file baseinstalldir="HTML" md5sum="78f33900d09b154dc565a933ded39088" name="docs/examples/TagCloud_example1.php" role="doc" />
-   <file baseinstalldir="HTML" md5sum="356c4c0631c0b72ed742a5cd6cf8776b" name="docs/examples/TagCloud_example2.php" role="doc" />
-   <file baseinstalldir="HTML" md5sum="f7ddababd1b502eee02af1aa63993aba" name="docs/examples/TagCloud_example3.php" role="doc" />
-   <file baseinstalldir="HTML" md5sum="9f75f7a860ad4948e6116bebe3063376" name="TagCloud.php" role="php" />
+   <file baseinstalldir="HTML" md5sum="dd05a51941534fb89fc6738ccac22db1" name="docs/examples/TagCloud_example1.php" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" md5sum="428dd7c72ec26b47075c5dad7d2c93f4" name="docs/examples/TagCloud_example2.php" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" md5sum="81e112b874be1fa489edc123518fe811" name="docs/examples/TagCloud_example3.php" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" md5sum="1992e5957d6190836b2c46e56ae68333" name="docs/examples/TagCloud_example4.php" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" md5sum="5c1821ca0dc4ed3967e14fdb60c4bae6" name="tests/AllTests.php" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" md5sum="08abd236933901215f892764581fd906" name="tests/TagCloudTest.php" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" md5sum="aa88f07252d39c9108e2609b865ec5bc" name="TagCloud.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
   </dir>
  </contents>
  <dependencies>
@@ -108,12 +155,21 @@ Fixed bug #12419 &quot;Extended class defines wrong array parameters&quot;</note
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2007-12-11</date>
+   <date>2008-01-23</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>New features added
+   <notes>Quality review release
+ - Heavily applied PEAR Coding Standards
+ - extended unit tests
 
-Added requested feature #12417 &quot;Adding weighted limitation of elements&quot;
- - </notes>
+Fixed issues
+ - Fixed hard-wired css class name: If cloud consists of one tag and epocLevel
+   was set up by extending the class member, the default value for the css class
+   may be incorrect if it was not &quot;latest&quot;. This behaviour has been changed. The
+   value for the css class is now based on the last value of a _epocLevel key
+   string.
+ - Returned value of _buidHTMLTags was of wrong type if no tags were set up.
+   This behaviour has been changed. An empty tag cloud will now be displayed
+   with text &quot;not enough data&quot; instead of returning an empty string.</notes>
   </release>
  </changelog>
 </package>
