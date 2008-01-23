@@ -33,7 +33,7 @@ $packagexml->setOptions(array(
     'filelistgenerator' => 'cvs', // generate from cvs, use file for directory
     'ignore' => array(__FILE__, 'misc/'),
     'packagefile' => 'package2.xml',
-    'dir_roles' => array('docs' => 'doc')
+    'dir_roles' => array('docs' => 'doc', 'tests' => 'test')
 ));
 $packagexml->setChannel('pear.php.net');
 $packagexml->setPackage('HTML_TagCloud');
