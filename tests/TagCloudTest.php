@@ -16,7 +16,7 @@
  * @category  HTML
  * @package   HTML_TagCloud
  * @author    Bastian Onken <bastian.onken@gmx.net>
- * @copyright 2007 Bastian Onken
+ * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/HTML_TagCloud
@@ -34,7 +34,7 @@ require_once 'PHPUnit/Framework.php';
  * @category  HTML
  * @package   HTML_TagCloud
  * @author    Bastian Onken <bastian.onken@gmx.net>
- * @copyright 2007 Bastian Onken
+ * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/HTML_TagCloud
@@ -42,8 +42,9 @@ require_once 'PHPUnit/Framework.php';
  */
 class TagCloudTest extends PHPUnit_Framework_TestCase
 {
+    public $htmlTagCloud;
 
-    public $HTML_TagCloud;
+    public $addElementsData;
 
     /**
      * called before the test functions will be executed
@@ -51,42 +52,10 @@ class TagCloudTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    function setUp()
+    public function setUp()
     {
-        $this->HTML_TagCloud = new HTML_TagCloud();
-    }
-
-    /**
-     * called after the test functions are executed
-     * this function is defined in PHPUnit_TestCase and overwritten here
-     *
-     * @return void
-     */
-    function tearDown()
-    {
-        unset($this->HTML_TagCloud);
-    }
-
-    /**
-     * test the addElement function
-     *
-     * @return void
-     */
-    function testAddElement()
-    {
-        $this->HTML_TagCloud->addElement('tag0');
-        $result = $this->HTML_TagCloud->buildHTML();
-        $this->assertFalse(empty($result));
-    }
-
-    /**
-     * test the addElements function
-     *
-     * @return void
-     */
-    function testAddElements()
-    {
-        $tags = array(
+        $this->htmlTagCloud    = new HTML_TagCloud();
+        $this->addElementsData = array(
             array('name' => 'tag1'),
             array(
                 'name' => 'tag2',
@@ -104,9 +73,43 @@ class TagCloudTest extends PHPUnit_Framework_TestCase
                 'timestamp' => time()
             ),
         );
-        $this->HTML_TagCloud->addElements($tags);
-        $result = $this->HTML_TagCloud->buildHTML();
-        $this->assertFalse(empty($result));
+    }
+
+    /**
+     * test the addElement function
+     *
+     * @return void
+     */
+    public function testAddElement()
+    {
+        $expected = <<<EOT
+<div class="tagcloud"><a href="" style="font-size: 24px;" class="latest">tag0</a>&nbsp;
+</div>
+
+EOT;
+        $this->htmlTagCloud->addElement('tag0');
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($result, $expected);
+    }
+
+    /**
+     * test the addElements function
+     *
+     * @return void
+     */
+    public function testAddElements()
+    {
+        $expected = <<<EOT
+<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
+<a href="http://example.org" style="font-size: 12px;" class="latest">tag2</a>&nbsp;
+<a href="http://example.org" style="font-size: 24px;" class="latest">tag3</a>&nbsp;
+<a href="http://example.org" style="font-size: 36px;" class="earliest">tag4</a>&nbsp;
+</div>
+
+EOT;
+        $this->htmlTagCloud->addElements($this->addElementsData);
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($result, $expected);
     }
 
     /**
@@ -114,7 +117,7 @@ class TagCloudTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    function testBuildCSS()
+    public function testBuildCSS()
     {
         $expected = <<<EOT
 a.earliest:link {text-decoration: none; color: #cccccc;}
@@ -135,8 +138,8 @@ a.latest:hover {text-decoration: none; color: #0000ff;}
 a.latest:active {text-decoration: none; color: #0000ff;}
 
 EOT;
-        $this->assertEquals($expected, $this->HTML_TagCloud->buildCSS(),
-                            'my message');
+        $result   = $this->htmlTagCloud->buildCSS();
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -144,18 +147,19 @@ EOT;
      *
      * @return void
      */
-    function testBuildHTML()
+    public function testBuildHTML()
     {
         $expected = <<<EOT
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag0</a>&nbsp;
-<a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
+<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
 <a href="http://example.org" style="font-size: 12px;" class="latest">tag2</a>&nbsp;
 <a href="http://example.org" style="font-size: 24px;" class="latest">tag3</a>&nbsp;
 <a href="http://example.org" style="font-size: 36px;" class="earliest">tag4</a>&nbsp;
 </div>
 
 EOT;
-        $this->assertEquals($expected, $this->HTML_TagCloud->buildHTML());
+        $this->htmlTagCloud->addElements($this->addElementsData);
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -163,7 +167,7 @@ EOT;
      *
      * @return void
      */
-    function testBuildAll()
+    public function testBuildAll()
     {
         $expected = <<<EOT
 <style type="text/css">
@@ -184,15 +188,16 @@ a.latest:visited {text-decoration: none; color: #0000ff;}
 a.latest:hover {text-decoration: none; color: #0000ff;}
 a.latest:active {text-decoration: none; color: #0000ff;}
 </style>
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag0</a>&nbsp;
-<a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
+<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
 <a href="http://example.org" style="font-size: 12px;" class="latest">tag2</a>&nbsp;
 <a href="http://example.org" style="font-size: 24px;" class="latest">tag3</a>&nbsp;
 <a href="http://example.org" style="font-size: 36px;" class="earliest">tag4</a>&nbsp;
 </div>
 
 EOT;
-        $this->assertEquals($expected, $this->HTML_TagCloud->buildAll());
+        $this->htmlTagCloud->addElements($this->addElementsData);
+        $result = $this->htmlTagCloud->buildAll();
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -200,11 +205,16 @@ EOT;
      *
      * @return void
      */
-    function testClearElements()
+    public function testClearElements()
     {
-        $this->HTML_TagCloud->clearElements();
-        $result = $this->HTML_TagCloud->buildHTML();
-        $this->assertTrue(empty($result));
+        $expected = <<<EOT
+<div class="tagcloud">not enough data</div>
+
+EOT;
+        $this->htmlTagCloud->addElements($this->addElementsData);
+        $this->htmlTagCloud->clearElements();
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($expected, $result);
     }
 
 }
