@@ -16,7 +16,7 @@
  * @category  HTML
  * @package   HTML_TagCloud
  * @author    Bastian Onken <bastian.onken@gmx.net>
- * @copyright 2007 Bastian Onken
+ * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/HTML_TagCloud
@@ -36,7 +36,7 @@ require_once 'HTML/TagCloud.php';
  * @package   HTML_TagCloud
  * @author    Shoma Suzuki <shoma@catbot.net>
  * @author    Bastian Onken <bastian.onken@gmx.net>
- * @copyright 2006 Shoma Suzuki
+ * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/HTML_TagCloud
@@ -59,7 +59,7 @@ class MyTags extends HTML_TagCloud
                 'visited' => 'ff7f7f',
                 'hover'   => 'ff7f7f',
                 'active'  => 'ff7f7f',
-            ), 
+            ),
         ),
         array(
             'previous' => array(
@@ -67,7 +67,7 @@ class MyTags extends HTML_TagCloud
                 'visited' => 'ff7f7f',
                 'hover'   => 'ff7f7f',
                 'active'  => 'ff7f7f',
-            ), 
+            ),
         ),
         array(
             'recent' => array(
@@ -75,7 +75,7 @@ class MyTags extends HTML_TagCloud
                 'visited' => 'ff4f4f',
                 'hover'   => 'ff4f4f',
                 'active'  => 'ff4f4f',
-            ), 
+            ),
         ),
         array(
             'later' => array(

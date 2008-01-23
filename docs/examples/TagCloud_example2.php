@@ -18,7 +18,7 @@
  * @category  HTML
  * @package   HTML_TagCloud
  * @author    Bastian Onken <bastian.onken@gmx.net>
- * @copyright 2007 Bastian Onken
+ * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/HTML_TagCloud
@@ -57,7 +57,7 @@ $taghtml = $tags->buildHTML();
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>My first Tag Cloud</title>
 <style type="text/css">
-<?php 
+<?php
 print $css;
 ?>
 </style>
