@@ -152,30 +152,67 @@ echo '<?xml version="1.0"?>';
 <script type="text/javascript" src="http://yui.yahooapis.com/2.4.1/build/datasource/datasource-beta-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.4.1/build/dragdrop/dragdrop-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.4.1/build/datatable/datatable-beta-min.js"></script>
+<style type="text/css">
+.tagcloud {
+    font-family: 'lucida grande',trebuchet,'trebuchet ms',verdana,arial,helvetica,sans-serif;
+    line-height: 1.8em;
+    word-spacing: 0ex;
+    letter-spacing: normal;
+    text-decoration: none;
+    text-transform: none;
+    text-align: justify;
+    text-indent: 0ex;
+    margin: 1em 0em 0em 0em;
+    border: 2px dotted #ddd;
+    padding: 1em;
+}
+.tagcloud a:link {
+    border-width: 0;
+    color:#009 !important;
+}
+.tagcloud a:visited {
+    border-width: 0;
+}
+.tagcloud a:hover {
+    border-width: 1px;
+    color:white !important;
+    background-color: #000097;
+}
+.tagcloud a:active {
+    border-width: 1px;
+    color:white !important;
+    background-color: #C2D7E7;
+}
+.tagElement {
+    padding: 2px 5px;
+    position: relative;
+    vertical-align: middle;
+}
+</style>
 </head>
 <body class="yui-skin-sam">
-<img src="http://chart.apis.google.com/chart?<?php echo htmlspecialchars(implode('&', $chartParameterStringArray)); ?>" alt="TagCloud Algorithm Compare chart"/>
 <?php
 $tagCloud = new HTML_TagCloud();
 foreach ($tags as $tag => $count) {
     $tagCloud->addElement($tag, "http://example.org", $count);
 }
-print 'no conversion: '.$tagCloud->buildALL();
+print 'Real distribution: '.$tagCloud->buildALL();
 
 $tagCloud_linearize = new HTML_TagCloud();
 foreach (linearize($tags) as $tag => $count) {
     $tagCloud_linearize->addElement($tag, "http://example.org", $count);
 }
-print 'linearized: '.$tagCloud_linearize->buildHTML();
+print 'Linearized: '.$tagCloud_linearize->buildHTML();
 
 $tagCloud_logarithmicSmoothing = new HTML_TagCloud();
 foreach (logarithmicSmoothing($tags) as $tag => $count) {
     $tagCloud_logarithmicSmoothing->addElement($tag, "http://example.org", $count);
 }
-print 'logarithmic: '.$tagCloud_logarithmicSmoothing->buildHTML();
+print 'Logarithic smoothing: '.$tagCloud_logarithmicSmoothing->buildHTML();
 
 ?>
-<div id="TagCloudData" style="margin-top:1em"></div>
+<img alt="TagCloud Algorithm Compare chart" style="margin:1em 1em 1em 0;border:1px solid #888;float:left;" src="http://chart.apis.google.com/chart?<?php echo htmlspecialchars(implode('&', $chartParameterStringArray)); ?>" />
+<div id="TagCloudData" style="margin:1em 0 1em 1em;"></div>
 <script type="text/javascript">
 YAHOO.example.Data = {
 taglist: [
@@ -192,7 +229,9 @@ YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.Basic = new function() {
         var myColumnDefs = [
             {key:"tag", sortable:true, resizeable:true, editor:"textbox"},
-            {key:"quantity", formatter:YAHOO.widget.DataTable.formatNumber, sortable:true, resizeable:true, editor:"textbox", editorOptions:{validator:YAHOO.widget.DataTable.validateNumber}}
+            {key:"quantity", formatter:YAHOO.widget.DataTable.formatNumber,
+             sortable:true, resizeable:true, editor:"textbox",
+             editorOptions:{validator:YAHOO.widget.DataTable.validateNumber}}
         ];
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.taglist);
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
@@ -202,7 +241,8 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myDataTable = new YAHOO.widget.DataTable("TagCloudData",
                 myColumnDefs, this.myDataSource);
         // Enables inline cell editing
-        //this.myDataTable.subscribe("cellClickEvent", this.myDataTable.onEventShowCellEditor);
+        /*this.myDataTable.subscribe("cellClickEvent",
+                                   this.myDataTable.onEventShowCellEditor);*/
     };
 });
 </script>
