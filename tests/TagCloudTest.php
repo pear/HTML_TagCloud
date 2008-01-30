@@ -83,7 +83,7 @@ class HTML_TagCloud_Test extends PHPUnit_Framework_TestCase
     public function testAddElement()
     {
         $expected = <<<EOT
-<div class="tagcloud"><a href="" style="font-size: 24px;" class="latest">tag0</a>&nbsp;
+<div class="tagcloud"><a href="" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag0</a>&nbsp;
 </div>
 
 EOT;
@@ -100,10 +100,10 @@ EOT;
     public function testAddElements()
     {
         $expected = <<<EOT
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
-<a href="http://example.org" style="font-size: 12px;" class="latest">tag2</a>&nbsp;
-<a href="http://example.org" style="font-size: 24px;" class="latest">tag3</a>&nbsp;
-<a href="http://example.org" style="font-size: 36px;" class="earliest">tag4</a>&nbsp;
+<div class="tagcloud"><a href="" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag1</a>&nbsp;
+<a href="http://example.org" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag2</a>&nbsp;
+<a href="http://example.org" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag3</a>&nbsp;
+<a href="http://example.org" style="font-size: 36px;" class="{$this->htmlTagCloud->getUid()}_earliest">tag4</a>&nbsp;
 </div>
 
 EOT;
@@ -120,22 +120,22 @@ EOT;
     public function testBuildCSS()
     {
         $expected = <<<EOT
-a.earliest:link {text-decoration: none; color: #cccccc;}
-a.earliest:visited {text-decoration: none; color: #cccccc;}
-a.earliest:hover {text-decoration: none; color: #cccccc;}
-a.earliest:active {text-decoration: none; color: #cccccc;}
-a.earlier:link {text-decoration: none; color: #9999cc;}
-a.earlier:visited {text-decoration: none; color: #9999cc;}
-a.earlier:hover {text-decoration: none; color: #9999cc;}
-a.earlier:active {text-decoration: none; color: #9999cc;}
-a.later:link {text-decoration: none; color: #9999ff;}
-a.later:visited {text-decoration: none; color: #9999ff;}
-a.later:hover {text-decoration: none; color: #9999ff;}
-a.later:active {text-decoration: none; color: #9999ff;}
-a.latest:link {text-decoration: none; color: #0000ff;}
-a.latest:visited {text-decoration: none; color: #0000ff;}
-a.latest:hover {text-decoration: none; color: #0000ff;}
-a.latest:active {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_earliest:link {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earliest:visited {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earliest:hover {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earliest:active {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:link {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:visited {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:hover {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:active {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_later:link {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_later:visited {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_later:hover {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_later:active {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:link {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:visited {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:hover {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:active {text-decoration: none; color: #0000ff;}
 
 EOT;
         $result   = $this->htmlTagCloud->buildCSS();
@@ -150,10 +150,10 @@ EOT;
     public function testBuildHTML()
     {
         $expected = <<<EOT
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
-<a href="http://example.org" style="font-size: 12px;" class="latest">tag2</a>&nbsp;
-<a href="http://example.org" style="font-size: 24px;" class="latest">tag3</a>&nbsp;
-<a href="http://example.org" style="font-size: 36px;" class="earliest">tag4</a>&nbsp;
+<div class="tagcloud"><a href="" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag1</a>&nbsp;
+<a href="http://example.org" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag2</a>&nbsp;
+<a href="http://example.org" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag3</a>&nbsp;
+<a href="http://example.org" style="font-size: 36px;" class="{$this->htmlTagCloud->getUid()}_earliest">tag4</a>&nbsp;
 </div>
 
 EOT;
@@ -171,27 +171,27 @@ EOT;
     {
         $expected = <<<EOT
 <style type="text/css">
-a.earliest:link {text-decoration: none; color: #cccccc;}
-a.earliest:visited {text-decoration: none; color: #cccccc;}
-a.earliest:hover {text-decoration: none; color: #cccccc;}
-a.earliest:active {text-decoration: none; color: #cccccc;}
-a.earlier:link {text-decoration: none; color: #9999cc;}
-a.earlier:visited {text-decoration: none; color: #9999cc;}
-a.earlier:hover {text-decoration: none; color: #9999cc;}
-a.earlier:active {text-decoration: none; color: #9999cc;}
-a.later:link {text-decoration: none; color: #9999ff;}
-a.later:visited {text-decoration: none; color: #9999ff;}
-a.later:hover {text-decoration: none; color: #9999ff;}
-a.later:active {text-decoration: none; color: #9999ff;}
-a.latest:link {text-decoration: none; color: #0000ff;}
-a.latest:visited {text-decoration: none; color: #0000ff;}
-a.latest:hover {text-decoration: none; color: #0000ff;}
-a.latest:active {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_earliest:link {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earliest:visited {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earliest:hover {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earliest:active {text-decoration: none; color: #cccccc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:link {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:visited {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:hover {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_earlier:active {text-decoration: none; color: #9999cc;}
+a.{$this->htmlTagCloud->getUid()}_later:link {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_later:visited {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_later:hover {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_later:active {text-decoration: none; color: #9999ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:link {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:visited {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:hover {text-decoration: none; color: #0000ff;}
+a.{$this->htmlTagCloud->getUid()}_latest:active {text-decoration: none; color: #0000ff;}
 </style>
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="latest">tag1</a>&nbsp;
-<a href="http://example.org" style="font-size: 12px;" class="latest">tag2</a>&nbsp;
-<a href="http://example.org" style="font-size: 24px;" class="latest">tag3</a>&nbsp;
-<a href="http://example.org" style="font-size: 36px;" class="earliest">tag4</a>&nbsp;
+<div class="tagcloud"><a href="" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag1</a>&nbsp;
+<a href="http://example.org" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag2</a>&nbsp;
+<a href="http://example.org" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag3</a>&nbsp;
+<a href="http://example.org" style="font-size: 36px;" class="{$this->htmlTagCloud->getUid()}_earliest">tag4</a>&nbsp;
 </div>
 
 EOT;
