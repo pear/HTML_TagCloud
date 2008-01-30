@@ -152,28 +152,85 @@ class HTML_TagCloud
      */
     private $_epocFactor = 1;
 
+    /**
+     * @var    int
+     * @access protected
+     */
+    private $_minFontSize;
+
+    /**
+     * @var    int
+     * @access protected
+     */
+    private $_maxFontSize;
+
+    /**
+     * @var    string
+     * @access public
+     */
+    private $_uid;
+
     // }}}
     // {{{ public function __construct()
 
     /**
      * Class constructor
      *
-     * @param int $baseFontSize  base font size of output tag (option)
-     * @param int $fontSizeRange font size range
+     * @param int    $baseFontSize  base font size of output tag (option)
+     * @param int    $fontSizeRange font size range
+     * @param string $latestColor   color of latest tag (usually dark)
+     * @param string $earliestColor color of earliest tag (usually light)
+     * @param int    $thresholds    number of timelines to set up
      *
      * @access public
      * @since Method available since Release 0.1.0
      */
-    public function __construct($baseFontSize = 24, $fontSizeRange = 12)
+    public function __construct($baseFontSize = null, $fontSizeRange = null,
+                                $latestColor = null, $earliestColor = null,
+                                $thresholds = 4)
     {
-        $this->baseFontSize  = $baseFontSize;
-        $this->fontSizeRange = $fontSizeRange;
-        if ($this->baseFontSize - $this->fontSizeRange > 0) {
-            $this->minFontSize = $this->baseFontSize - $this->fontSizeRange;
-        } else {
-            $this->minFontSize = 0;
+        // to be able to set up multiple tag clouds in one page we need to set
+        //  up a unique id that will prefix the css names later
+        $this->_uid = 'tagCloud'.uniqid();
+        // if $baseFontSize was given, set to value, otherwise keep the original
+        //  value of HTML_TagCloud::baseFontSize
+        if (!is_null($baseFontSize)) {
+            $this->baseFontSize = $baseFontSize;
         }
-        $this->maxFontSize = $this->baseFontSize + $this->fontSizeRange;
+        // if $fontSizeRange was given, set to value, otherwise keep the
+        //  original value of HTML_TagCloud::fontSizeRange
+        if (!is_null($fontSizeRange)) {
+            $this->fontSizeRange = $fontSizeRange;
+        }
+        // make sure that we are in a positive font range
+        if ($this->baseFontSize - $this->fontSizeRange > 0) {
+            $this->_minFontSize = $this->baseFontSize - $this->fontSizeRange;
+        } else {
+            $this->_minFontSize = 0;
+        }
+        $this->_maxFontSize = $this->baseFontSize + $this->fontSizeRange;
+        // override default epocLevel settings
+        if (!is_null($latestColor) && !is_null($earliestColor) && $thresholds > 0) {
+            $this->epocLevel = $this->_generateEpocLevel($latestColor,
+                                                         $earliestColor,
+                                                         $thresholds);
+        }
+    }
+
+    // }}}
+    // {{{ public function getUid()
+
+    /**
+     * returns the unique id of the tag cloud
+     *
+     * @return string unique id
+     *
+     * @access public
+     * @since Method available since Release 0.2.0
+     */
+    public function getUid()
+    {
+        return $this->_uid;
     }
 
     // }}}
@@ -270,6 +327,7 @@ class HTML_TagCloud
      * @see HTML_TagCloud::_buildAll
      * @since Method available since Release 0.1.0
      * @deprecated Method deprecated in Release 0.1.3
+     * @legacy
      */
     public function html_and_css($param = array())
     {
@@ -312,7 +370,7 @@ class HTML_TagCloud
         foreach ($this->epocLevel as $item) {
             foreach ($item as $epocName => $colors) {
                 foreach ($colors as $attr => $color) {
-                    $css .= "a.{$epocName}:{$attr} {"
+                    $css .= "a.{$this->_uid}_{$epocName}:{$attr} {"
                            ."text-decoration: none; color: #{$color};}\n";
                 }
             }
@@ -341,9 +399,9 @@ class HTML_TagCloud
             return 'not enough data';
         } elseif ($this->total == 1) {
             $tag = $this->_elements[0];
-            return $this->_createHTMLTag($tag,
-                                    key($this->epocLevel[count($this->epocLevel)-1]),
-                                    $this->baseFontSize);
+            return $this->createHTMLTag($tag, $this->_uid.'_'
+                              .key($this->epocLevel[count($this->epocLevel)-1]),
+                              $this->baseFontSize);
         }
 
         $limit = array_key_exists('limit', $param) ? $param['limit'] : 0;
@@ -351,7 +409,7 @@ class HTML_TagCloud
         $this->_calcMumCount();
         $this->_calcMumEpoc();
 
-        $range = $this->maxFontSize - $this->minFontSize;
+        $range = $this->_maxFontSize - $this->_minFontSize;
         if ($this->_max != $this->_min) {
             $this->_factor = $range / (sqrt($this->_max) - sqrt($this->_min));
         } else {
@@ -373,8 +431,9 @@ class HTML_TagCloud
                 $epocLv = $this->_getEpocLevel($tag['timestamp']);
             }
             $colorType = $this->epocLevel[$epocLv];
-            $fontSize  = $this->minFontSize + $countLv;
-            $rtn[]     = $this->_createHTMLTag($tag, key($colorType), $fontSize);
+            $fontSize  = $this->_minFontSize + $countLv;
+            $rtn[]     = $this->createHTMLTag($tag, $this->_uid.'_'.key($colorType),
+                                              $fontSize);
         }
         return implode("", $rtn);
     }
@@ -398,6 +457,7 @@ class HTML_TagCloud
      * @see HTML_TagCloud::createHTMLTag()
      * @since Method available since Release 0.1.0
      * @deprecated Method deprecated in Release 0.1.3
+     * @legacy
      */
     protected function _createHTMLTag($tag, $type, $fontSize)
     {
@@ -424,6 +484,37 @@ class HTML_TagCloud
         return '<a href="'. $tag['url'] . '" style="font-size: '.
                $fontSize . $this->sizeSuffix . ';" class="'.  $type .'">' .
                htmlspecialchars($tag['name']) . '</a>&nbsp;'. "\n";
+    }
+
+    // }}}
+    // {{{ protected function generateEpocLevel()
+
+    /**
+     * build the epocLevel Array automatically by calculating an array of colors
+     *
+     * @param string $latestColor   color of latest epocLevel (usually dark)
+     * @param string $earliestColor color of earliest epocLevel (usually light)
+     * @param int    $thresholds    number of levels to generate colors for
+     *
+     * @return array epocLevel
+     *
+     * @access private
+     * @since Method available since Release 0.2.0
+     */
+    private function _generateEpocLevel($latestColor, $earliestColor, $thresholds)
+    {
+        include_once 'Image/Color.php';
+        $imageColor = new Image_Color();
+        $imageColor->setWebSafe(false);
+        $imageColor->setColors('000090', 'FFFFFF');
+        $epocLevel = array();
+        foreach ($imageColor->getRange($thresholds) as $key => $color) {
+            $epocLevel[]['epocLevel'.$key] = array(
+                'link'    => $color,
+                'visited' => $color
+            );
+        }
+        return array_reverse($epocLevel);
     }
 
     // }}}
