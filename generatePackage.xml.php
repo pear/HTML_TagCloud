@@ -38,27 +38,27 @@ $packagexml->setOptions(array(
 $packagexml->setChannel('pear.php.net');
 $packagexml->setPackage('HTML_TagCloud');
 $summary = <<<EOT
-Generate a "Tag Cloud" in HTML and visualize clickable tags by their frequenzy.
+Generate a "Tag Cloud" in HTML and visualize tags by their frequenzy.
 Additionally visualizes each tag's age.
 EOT;
 $packagexml->setSummary($summary);
 $description = <<<EOT
 This package can be used to generate tag clouds. The output is HTML and CSS.
 
-A Tag Cloud is an visual representation of list of so-called "tags" or keywords,
-that do have a different font size depending on how often they occur on the
-page/blog. A less used synonym for a Tag Cloud that came up before Web 2.0 is
-the term "weightet list". Popular examples of Tag Clouds and their use can be
-found in action at pages like Flickr, Del.icio.us and Technorati. A nice
-overview on what a Tag Cloud can actually do can be found at WikiPedia:
+A Tag Cloud is a visual representation of so-called "tags" or keywords, that do
+have a different font size depending on how often they occur on the page/blog. A
+less used synonym for a Tag Cloud that came up before Web 2.0 is the term
+"weightet list". Popular examples of Tag Clouds and their use can be found in
+action at pages like Flickr, Del.icio.us and Technorati. A nice overview on what
+a Tag Cloud can actually do can be found at WikiPedia:
 http://wikipedia.org/wiki/Tag_cloud
 
 This package does not only visualize frequency, but also timeline infomation.
 The newer the tag is, the deeper its color will be; older tags will have a
 lighter color.
 
-The goal of "HTML_TagCloud" is to provide an easy to implement/configureable Tag
-Cloud solution that is suitable for any PHP-based webapp.
+The main goal of "HTML_TagCloud" is to provide an easy to implement and
+configureable Tag Cloud solution that is suitable for any PHP-based webapp.
 
 Features:
  - set up each tag's name, URL, frequenzy, age
@@ -117,9 +117,7 @@ $packagexml->setPackageType('php'); // this is a PEAR-style php script package
 $packagexml->setDate('2006-11-25');
 $packagexml->setChangelogEntry('0.1.2', $packagexml->generateChangeLogEntry());
 
-/* add changelogs for future releases above this line */
-
-// Current Release
+// Changelog: Release 0.1.3
 $notes = <<<EOT
 Quality review release
  - Heavily applied PEAR Coding Standards
@@ -135,13 +133,38 @@ Fixed issues
    This behaviour has been changed. An empty tag cloud will now be displayed
    with text "not enough data" instead of returning an empty string.
 EOT;
+$packagexml->setAPIVersion('0.1.3');
+$packagexml->setAPIStability('beta');
+$packagexml->setReleaseVersion('0.1.3');
+$packagexml->setReleaseStability('beta');
+$packagexml->setLicense('PHP License', 'http://www.php.net/license');
+$packagexml->setNotes($notes);
+$packagexml->setPackageType('php'); // this is a PEAR-style php script package
+$packagexml->setDate('2008-01-23');
+$packagexml->setChangelogEntry('0.1.3', $packagexml->generateChangeLogEntry());
+
+/* add changelogs for future releases above this line */
+
+// Current Release
 /*$notes = <<<EOT
 New features added
  - Added requested feature #12417 "Adding weighted limitation of elements"
 EOT;*/
-$packagexml->setAPIVersion('0.1.3');
+$notes = <<<EOT
+New features
+ - Added ability to set up timeline colors for tags dynamically by setting up a
+    latestColor and a earliestColor and the number of thresholds.
+    (requires PEAR package "Image_Color")
+ - Added ability to set up multiple tag cloud per page by attaching a unique id
+    to each tag cloud's individual css class identifiers
+Fixed issues
+ - Fixed issue with setting up basefonsize and fontsizerange on extending class
+   (doesn't got recognized when instance isn't constructed with these values;
+   so they were useless in most of the cases)
+EOT;
+$packagexml->setAPIVersion('0.2.0');
 $packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.1.3');
+$packagexml->setReleaseVersion('0.2.0');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
@@ -172,7 +195,7 @@ $packagexml->generateContents();
 //$pkg = &$packagexml->exportCompatiblePackageFile1();
 
 // do the output: if make was set write to file, otherwise just print to screen
-if (isset($_GET['make'])
+if (   isset($_GET['make'])
     || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
     //$pkg->writePackageFile();
     $packagexml->writePackageFile();
