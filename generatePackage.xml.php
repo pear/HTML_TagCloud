@@ -38,7 +38,7 @@ $packagexml->setOptions(array(
 $packagexml->setChannel('pear.php.net');
 $packagexml->setPackage('HTML_TagCloud');
 $summary = <<<EOT
-Generate a "Tag Cloud" in HTML and visualize tags by their frequenzy.
+Generate a "Tag Cloud" in HTML and visualize tags by their frequency.
 Additionally visualizes each tag's age.
 EOT;
 $packagexml->setSummary($summary);
@@ -61,7 +61,7 @@ The main goal of "HTML_TagCloud" is to provide an easy to implement and
 configureable Tag Cloud solution that is suitable for any PHP-based webapp.
 
 Features:
- - set up each tag's name, URL, frequenzy, age
+ - set up each tag's name, URL, frequency, age
  - customizable colors
  - customizable font-sizes
 EOT;
