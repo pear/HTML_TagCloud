@@ -167,6 +167,7 @@ $packagexml->setAPIStability('beta');
 $packagexml->setReleaseVersion('0.2.0');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
+$packagexml->addPackageDepWithChannel('optional', 'Image_Color', 'pear.php.net', '1.0.2');
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
 $packagexml->addGlobalReplacement('package-info', '@package_version@',
                                   'version');
