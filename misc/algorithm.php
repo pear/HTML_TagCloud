@@ -79,6 +79,7 @@ function logarithmicSmoothing(Array $tags)
 {
     global $graphScale;
     foreach ($tags as $tag => $count) {
+        //$tags[$tag] = log($count + 1, (max($tags) + min($tags)) / 2) * ((max($tags) + min($tags)) / 2);
         //$tags[$tag] = log($count + 1, max($tags)) * max($tags);
         $tags[$tag] = log($count + 1, max($tags)) * (max($tags) + min($tags)) / 2;
     }
@@ -138,10 +139,28 @@ foreach ($chartParameters as $chartParameterId => $chartParameterValue) {
     $chartParameterStringArray[] = $chartParameterId.'='.$chartParameterValue;
 }
 
+function formatOutput($stringHTML) {
+    $xhtml = new DOMDocument('1.0', 'utf-8');
+    $xhtml->preserveWhiteSpace = false;
+    $xhtml->strictErrorChecking = true;
+    $xhtml->resolveExternals = false;
+    $valid = $xhtml->loadXML($stringHTML);
+    $xhtml->formatOutput = true;
+    if( $valid === true ) {
+        return $xhtml->saveXML();
+    } else {
+        return $stringHTML.'error';
+    }
+}
+
+ob_start('formatOutput');
+
 echo '<?xml version="1.0"?>';
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -154,7 +173,8 @@ echo '<?xml version="1.0"?>';
 <script type="text/javascript" src="http://yui.yahooapis.com/2.4.1/build/datatable/datatable-beta-min.js"></script>
 <style type="text/css">
 .tagcloud {
-    font-family: 'lucida grande',trebuchet,'trebuchet ms',verdana,arial,helvetica,sans-serif;
+    font-family: 'lucida grande',trebuchet,'trebuchet ms',verdana,arial,
+                  helvetica,sans-serif;
     line-height: 1.8em;
     word-spacing: 0ex;
     letter-spacing: normal;
@@ -172,6 +192,7 @@ echo '<?xml version="1.0"?>';
 }
 .tagcloud a:visited {
     border-width: 0;
+    color:#009 !important;
 }
 .tagcloud a:hover {
     border-width: 1px;
@@ -196,19 +217,19 @@ $tagCloud = new HTML_TagCloud();
 foreach ($tags as $tag => $count) {
     $tagCloud->addElement($tag, "http://example.org", $count);
 }
-print 'Real distribution: '.$tagCloud->buildALL();
+print '<p>Real distribution:</p>'.$tagCloud->buildAll();
 
 $tagCloud_linearize = new HTML_TagCloud();
 foreach (linearize($tags) as $tag => $count) {
     $tagCloud_linearize->addElement($tag, "http://example.org", $count);
 }
-print 'Linearized: '.$tagCloud_linearize->buildHTML();
+print '<p>Linearized:</p>'.$tagCloud_linearize->buildAll();
 
 $tagCloud_logarithmicSmoothing = new HTML_TagCloud();
 foreach (logarithmicSmoothing($tags) as $tag => $count) {
     $tagCloud_logarithmicSmoothing->addElement($tag, "http://example.org", $count);
 }
-print 'Logarithic smoothing: '.$tagCloud_logarithmicSmoothing->buildHTML();
+print '<p>Logarithic smoothing:</p>'.$tagCloud_logarithmicSmoothing->buildAll();
 
 ?>
 <img alt="TagCloud Algorithm Compare chart" style="margin:1em 1em 1em 0;border:1px solid #888;float:left;" src="http://chart.apis.google.com/chart?<?php echo htmlspecialchars(implode('&', $chartParameterStringArray)); ?>" />
