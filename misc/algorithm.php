@@ -139,14 +139,22 @@ foreach ($chartParameters as $chartParameterId => $chartParameterValue) {
     $chartParameterStringArray[] = $chartParameterId.'='.$chartParameterValue;
 }
 
-function formatOutput($stringHTML) {
-    $xhtml = new DOMDocument('1.0', 'utf-8');
-    $xhtml->preserveWhiteSpace = false;
+/**
+ * callback function to beautify html output
+ *
+ * @param string $stringHTML Output Buffer string
+ *
+ * @return string beautified XHTML
+ */
+function formatOutput($stringHTML)
+{
+    $xhtml                      = new DOMDocument('1.0', 'utf-8');
+    $xhtml->preserveWhiteSpace  = false;
     $xhtml->strictErrorChecking = true;
-    $xhtml->resolveExternals = false;
-    $valid = $xhtml->loadXML($stringHTML);
-    $xhtml->formatOutput = true;
-    if( $valid === true ) {
+    $xhtml->resolveExternals    = false;
+    $valid                      = $xhtml->loadXML($stringHTML);
+    $xhtml->formatOutput        = true;
+    if ($valid === true ) {
         return $xhtml->saveXML();
     } else {
         return $stringHTML.'error';
