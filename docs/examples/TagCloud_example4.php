@@ -26,7 +26,7 @@
 require_once 'HTML/TagCloud.php';
 
 /**
- * MyTagsDynamicColors extends HTML_TagCloud
+ * MyTagsCustomCss extends HTML_TagCloud
  *
  * Showing how to override the protected class vars
  *
@@ -39,7 +39,7 @@ require_once 'HTML/TagCloud.php';
  * @link      http://pear.php.net/package/HTML_TagCloud
  * @since     Class available since Release 0.1.3
  */
-class MyTagsDynamicColors extends HTML_TagCloud
+class MyTagsCustomCss extends HTML_TagCloud
 {
     protected $sizeSuffix = '%';
 
@@ -70,7 +70,7 @@ $fontSizeRange = 50;
 $dummyURL      = 'http://example.org';
 // Tag font size range will result in ($baseFontSize - $fontSizeRange) to
 // ($baseFontSize + $fontSizeRange).
-$tags = new MyTagsDynamicColors($baseFontSize, $fontSizeRange, '000090', 'FFFFFF', 6);
+$tags = new MyTagsCustomCss($baseFontSize, $fontSizeRange, '000090', 'FFFFFF', 6);
 // every element has a high count
 $tags->addElement('oneYearOld(38)', $dummyURL, 38, strtotime('-1 year'));
 $tags->addElement('halfAYearOld(34)', $dummyURL, 34, strtotime('-6 month'));
@@ -93,7 +93,7 @@ $tags->addElement('oneMonthOld(4)', $dummyURL, 4, strtotime('-1 month'));
 $tags->addElement('oneWeekOld(5)', $dummyURL, 5, strtotime('-1 week'));
 $tags->addElement('now(3)', $dummyURL, 3, strtotime('now'));
 
-$tags2 = new MyTagsDynamicColors($baseFontSize, $fontSizeRange, '000090', 'FFFFFF', 1);
+$tags2 = new MyTagsCustomCss($baseFontSize, $fontSizeRange, '000090', 'FFFFFF', 1);
 // set up some tags
 $tagFixtures = array(
     'blogs',
@@ -126,13 +126,8 @@ foreach ($tagFixtures as $tag) {
     // finally add it to the cloud, to see how the time and count values are
     //  interpreted we add them to the tagname to see their current value
     //$tag = $tag.'('.$numberOfOccurrences.','.str_replace(' ', '', $time).')';
-    $tags2->addElement($tag, $dummyURL, $numberOfOccurrences,
-                       strtotime($time));
+    $tags2->addElement($tag, $dummyURL, $numberOfOccurrences, strtotime($time));
 }
-
-$tagCloudCSS = <<<EOD
-
-EOD;
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -142,7 +137,8 @@ EOD;
 <title>My customized Tag Cloud</title>
 <style type="text/css">
 .tagcloud {
-    font-family: 'lucida grande',trebuchet,'trebuchet ms',verdana,arial,helvetica,sans-serif;
+    font-family: 'lucida grande',trebuchet,'trebuchet ms',verdana,arial,
+                  helvetica,sans-serif;
     line-height: 1.8em;
     word-spacing: 0ex;
     letter-spacing: normal;
