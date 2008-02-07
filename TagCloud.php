@@ -191,7 +191,7 @@ class HTML_TagCloud
     {
         // to be able to set up multiple tag clouds in one page we need to set
         //  up a unique id that will prefix the css names later
-        $this->_uid = 'tagCloud'.uniqid();
+        $this->_uid = 'tagcloud'.uniqid();
         // if $baseFontSize was given, set to value, otherwise keep the original
         //  value of HTML_TagCloud::baseFontSize
         if (!is_null($baseFontSize)) {
@@ -308,7 +308,7 @@ class HTML_TagCloud
     public function buildAll($param = array())
     {
         $html  = '<style type="text/css">'."\n";
-        $html .= $this->buildCSS()."</style>\n";
+        $html .= $this->buildCSS().'</style>'."\n";
         $html .= $this->buildHTML($param);
         return $html;
     }
@@ -370,8 +370,8 @@ class HTML_TagCloud
         foreach ($this->epocLevel as $item) {
             foreach ($item as $epocName => $colors) {
                 foreach ($colors as $attr => $color) {
-                    $css .= "a.{$this->_uid}_{$epocName}:{$attr} {"
-                           ."text-decoration: none; color: #{$color};}\n";
+                    $css .= 'a.'.$this->_uid.'_'.$epocName.':'.$attr.' {'
+                           .'text-decoration: none; color: #'.$color.';}'."\n";
                 }
             }
         }
@@ -396,7 +396,7 @@ class HTML_TagCloud
         $this->total = count($this->_elements);
         // no tags elements
         if ($this->total == 0) {
-            return 'not enough data';
+            return '<p>not enough data</p>'."\n";
         } elseif ($this->total == 1) {
             $tag = $this->_elements[0];
             return $this->createHTMLTag($tag, $this->_uid.'_'
@@ -425,7 +425,7 @@ class HTML_TagCloud
         $rtn = array();
         foreach ($this->_elements as $tag) {
             $countLv = $this->_getCountLevel($tag['count']);
-            if (! isset($tag['timestamp']) || empty($tag['timestamp'])) {
+            if (!isset($tag['timestamp']) || empty($tag['timestamp'])) {
                 $epocLv = count($this->epocLevel) - 1;
             } else {
                 $epocLv = $this->_getEpocLevel($tag['timestamp']);
@@ -435,7 +435,7 @@ class HTML_TagCloud
             $rtn[]     = $this->createHTMLTag($tag, $this->_uid.'_'.key($colorType),
                                               $fontSize);
         }
-        return implode("", $rtn);
+        return implode('', $rtn);
     }
 
     // }}}
@@ -481,9 +481,9 @@ class HTML_TagCloud
      */
     protected function createHTMLTag($tag, $type, $fontSize)
     {
-        return '<a href="'. $tag['url'] . '" style="font-size: '.
-               $fontSize . $this->sizeSuffix . ';" class="'.  $type .'">' .
-               htmlspecialchars($tag['name']) . '</a>&nbsp;'. "\n";
+        return '<a href="'.$tag['url'].'" style="font-size:'
+               .$fontSize.$this->sizeSuffix.';" class="tagcloudElement '.$type.'">'
+               .htmlspecialchars($tag['name']).'</a> &nbsp;'."\n";
     }
 
     // }}}
@@ -532,7 +532,7 @@ class HTML_TagCloud
      */
     private function _sortTags($limit = 0)
     {
-        usort($this->_elements, array($this, "_cmpElementsName"));
+        usort($this->_elements, array($this, '_cmpElementsName'));
         if ($limit != 0) {
             $this->_elements = array_splice($this->_elements, 0, $limit);
         }
@@ -636,7 +636,7 @@ class HTML_TagCloud
      */
     private function _getEpocLevel($timestamp = 0)
     {
-        return (int) (sqrt($timestamp) - sqrt($this->_minEpoc)) * $this->_epocFactor;
+        return (int)(sqrt($timestamp) - sqrt($this->_minEpoc)) * $this->_epocFactor;
     }
 
     // }}}
@@ -654,8 +654,8 @@ class HTML_TagCloud
      */
     private function _wrapDiv($html)
     {
-        return $html == '' ? '' : '<div class="'.$this->cssClass .'">'.$html
-                                 .'</div>'."\n";
+        return $html == '' ? '' : '<div class="'.$this->cssClass.' '.$this->_uid.'">'
+                                  ."\n".$html.'</div>'."\n";
     }
 
     // }}}
