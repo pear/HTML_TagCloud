@@ -83,7 +83,8 @@ class HTML_TagCloud_Test extends PHPUnit_Framework_TestCase
     public function testAddElement()
     {
         $expected = <<<EOT
-<div class="tagcloud"><a href="" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag0</a>&nbsp;
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag0</a> &nbsp;
 </div>
 
 EOT;
@@ -100,10 +101,11 @@ EOT;
     public function testAddElements()
     {
         $expected = <<<EOT
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag1</a>&nbsp;
-<a href="http://example.org" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag2</a>&nbsp;
-<a href="http://example.org" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag3</a>&nbsp;
-<a href="http://example.org" style="font-size: 36px;" class="{$this->htmlTagCloud->getUid()}_earliest">tag4</a>&nbsp;
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="" style="font-size:12px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag1</a> &nbsp;
+<a href="http://example.org" style="font-size:12px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag2</a> &nbsp;
+<a href="http://example.org" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag3</a> &nbsp;
+<a href="http://example.org" style="font-size:36px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_earliest">tag4</a> &nbsp;
 </div>
 
 EOT;
@@ -150,10 +152,11 @@ EOT;
     public function testBuildHTML()
     {
         $expected = <<<EOT
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag1</a>&nbsp;
-<a href="http://example.org" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag2</a>&nbsp;
-<a href="http://example.org" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag3</a>&nbsp;
-<a href="http://example.org" style="font-size: 36px;" class="{$this->htmlTagCloud->getUid()}_earliest">tag4</a>&nbsp;
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="" style="font-size:12px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag1</a> &nbsp;
+<a href="http://example.org" style="font-size:12px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag2</a> &nbsp;
+<a href="http://example.org" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag3</a> &nbsp;
+<a href="http://example.org" style="font-size:36px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_earliest">tag4</a> &nbsp;
 </div>
 
 EOT;
@@ -188,10 +191,11 @@ a.{$this->htmlTagCloud->getUid()}_latest:visited {text-decoration: none; color: 
 a.{$this->htmlTagCloud->getUid()}_latest:hover {text-decoration: none; color: #0000ff;}
 a.{$this->htmlTagCloud->getUid()}_latest:active {text-decoration: none; color: #0000ff;}
 </style>
-<div class="tagcloud"><a href="" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag1</a>&nbsp;
-<a href="http://example.org" style="font-size: 12px;" class="{$this->htmlTagCloud->getUid()}_latest">tag2</a>&nbsp;
-<a href="http://example.org" style="font-size: 24px;" class="{$this->htmlTagCloud->getUid()}_latest">tag3</a>&nbsp;
-<a href="http://example.org" style="font-size: 36px;" class="{$this->htmlTagCloud->getUid()}_earliest">tag4</a>&nbsp;
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="" style="font-size:12px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag1</a> &nbsp;
+<a href="http://example.org" style="font-size:12px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag2</a> &nbsp;
+<a href="http://example.org" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag3</a> &nbsp;
+<a href="http://example.org" style="font-size:36px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_earliest">tag4</a> &nbsp;
 </div>
 
 EOT;
@@ -208,7 +212,9 @@ EOT;
     public function testClearElements()
     {
         $expected = <<<EOT
-<div class="tagcloud">not enough data</div>
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<p>not enough data</p>
+</div>
 
 EOT;
         $this->htmlTagCloud->addElements($this->addElementsData);
