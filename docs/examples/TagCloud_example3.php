@@ -3,7 +3,11 @@
 /**
  * TagCloud_example3.php
  *
- * Generate a highly customized Tag Cloud by extending the class.
+ * Generate a customized Tag Cloud by extending the class.
+ * In this example we visualize only the timeline information, not the number of
+ * occurrences. Because of this every item of the tag cloud will have the same
+ * font size, but different colors. The newer the tag is, the deeper its color
+ * will be; older tags will have a lighter color.
  *
  * PHP version 5
  *

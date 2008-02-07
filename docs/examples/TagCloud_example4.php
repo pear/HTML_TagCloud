@@ -4,6 +4,9 @@
  * TagCloud_example4.php
  *
  * Generate a more customized Tag Cloud by extending the class.
+ * This example shows how the timeline information and number of occurrences of
+ * tag are visualized. Additionally it shows how to set up own css styles.
+ * The second part of this example shows how to disable timeline processing.
  *
  * PHP version 5
  *
@@ -42,25 +45,6 @@ require_once 'HTML/TagCloud.php';
 class MyTagsCustomCss extends HTML_TagCloud
 {
     protected $sizeSuffix = '%';
-
-    /**
-     * create a Element of HTML part
-     *
-     * @param array  $tag      tagname
-     * @param string $type     css class of time line param
-     * @param float  $fontSize size of the font for this tag
-     *
-     * @return string a Element of Tag HTML
-     *
-     * @access protected
-     * @since Method available since Release 0.1.3
-     */
-    protected function createHTMLTag($tag, $type, $fontSize)
-    {
-        return '<a href="'.$tag['url'].'" style="font-size: '.
-               $fontSize.$this->sizeSuffix.';" class="tagElement '.$type.'">'.
-               htmlspecialchars($tag['name']).'</a> '."\n";
-    }
 }
 
 date_default_timezone_set('UTC');
@@ -166,7 +150,7 @@ foreach ($tagFixtures as $tag) {
     color:white !important;
     background-color: #C2D7E7;
 }
-.tagElement {
+.tagcloudElement {
     padding: 2px 5px;
     position: relative;
     vertical-align: middle;
