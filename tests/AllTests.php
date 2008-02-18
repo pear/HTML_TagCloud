@@ -30,7 +30,9 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 require_once 'PHPUnit/Framework.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-require_once 'TagCloudTest.php';
+chdir(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
+
+require_once dirname(__FILE__) . '/TagCloudTest.php';
 
 /**
  * HTML_TagCloud_AllTests
