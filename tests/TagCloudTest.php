@@ -40,7 +40,7 @@ require_once 'PHPUnit/Framework.php';
  * @link      http://pear.php.net/package/HTML_TagCloud
  * @since     Class available since Release 0.1.3
  */
-class HTML_TagCloud_Test extends PHPUnit_Framework_TestCase
+class HTML_TagCloudTest extends PHPUnit_Framework_TestCase
 {
     public $htmlTagCloud;
 

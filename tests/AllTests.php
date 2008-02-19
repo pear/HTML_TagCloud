@@ -68,7 +68,7 @@ class HTML_TagCloud_AllTests
     public static function suite()
     {
         $suite = new PHPUnit_Framework_TestSuite('HTML_TagCloud package');
-        $suite->addTestSuite('HTML_TagCloud_Test');
+        $suite->addTestSuite('HTML_TagCloudTest');
         return $suite;
     }
 }
