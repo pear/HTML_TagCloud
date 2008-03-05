@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.6.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package packagerversion="1.7.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_TagCloud</name>
  <channel>pear.php.net</channel>
- <summary>Generate a &quot;Tag Cloud&quot; in HTML and visualize clickable tags by their frequenzy.
+ <summary>Generate a &quot;Tag Cloud&quot; in HTML and visualize tags by their frequency.
 Additionally visualizes each tag&apos;s age.</summary>
  <description>This package can be used to generate tag clouds. The output is HTML and CSS.
 
-A Tag Cloud is an visual representation of list of so-called &quot;tags&quot; or keywords,
-that do have a different font size depending on how often they occur on the
-page/blog. A less used synonym for a Tag Cloud that came up before Web 2.0 is
-the term &quot;weightet list&quot;. Popular examples of Tag Clouds and their use can be
-found in action at pages like Flickr, Del.icio.us and Technorati. A nice
-overview on what a Tag Cloud can actually do can be found at WikiPedia:
+A Tag Cloud is a visual representation of so-called &quot;tags&quot; or keywords, that do
+have a different font size depending on how often they occur on the page/blog. A
+less used synonym for a Tag Cloud that came up before Web 2.0 is the term
+&quot;weightet list&quot;. Popular examples of Tag Clouds and their use can be found in
+action at pages like Flickr, Del.icio.us and Technorati. A nice overview on what
+a Tag Cloud can actually do can be found at WikiPedia:
 http://wikipedia.org/wiki/Tag_cloud
 
 This package does not only visualize frequency, but also timeline infomation.
 The newer the tag is, the deeper its color will be; older tags will have a
 lighter color.
 
-The goal of &quot;HTML_TagCloud&quot; is to provide an easy to implement/configureable Tag
-Cloud solution that is suitable for any PHP-based webapp.
+The main goal of &quot;HTML_TagCloud&quot; is to provide an easy to implement and
+configureable Tag Cloud solution that is suitable for any PHP-based webapp.
 
 Features:
- - set up each tag&apos;s name, URL, frequenzy, age
+ - set up each tag&apos;s name, URL, frequency, age
  - customizable colors
  - customizable font-sizes</description>
  <lead>
@@ -40,30 +40,27 @@ Features:
   <email>shoma@catbot.net</email>
   <active>no</active>
  </lead>
- <date>2008-01-23</date>
- <time>17:40:04</time>
+ <date>2008-03-05</date>
+ <time>12:04:04</time>
  <version>
-  <release>0.1.3</release>
-  <api>0.1.3</api>
+  <release>0.2.0</release>
+  <api>0.2.0</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>Quality review release
- - Heavily applied PEAR Coding Standards
- - extended unit tests
-
+ <notes>New features
+ - Added ability to set up timeline colors for tags dynamically by setting up a
+    latestColor and a earliestColor and the number of thresholds.
+    (requires PEAR package &quot;Image_Color&quot;)
+ - Added ability to set up multiple tag cloud per page by attaching a unique id
+    to each tag cloud&apos;s individual css class identifiers
 Fixed issues
- - Fixed hard-wired css class name: If cloud consists of one tag and epocLevel
-   was set up by extending the class member, the default value for the css class
-   may be incorrect if it was not &quot;latest&quot;. This behaviour has been changed. The
-   value for the css class is now based on the last value of a _epocLevel key
-   string.
- - Returned value of _buidHTMLTags was of wrong type if no tags were set up.
-   This behaviour has been changed. An empty tag cloud will now be displayed
-   with text &quot;not enough data&quot; instead of returning an empty string.</notes>
+ - Fixed issue with setting up basefonsize and fontsizerange on extending class
+   (doesn&apos;t got recognized when instance isn&apos;t constructed with these values;
+   so they were useless in most of the cases)</notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
    <file baseinstalldir="HTML" md5sum="dd05a51941534fb89fc6738ccac22db1" name="docs/examples/TagCloud_example1.php" role="doc">
@@ -72,19 +69,19 @@ Fixed issues
    <file baseinstalldir="HTML" md5sum="428dd7c72ec26b47075c5dad7d2c93f4" name="docs/examples/TagCloud_example2.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="81e112b874be1fa489edc123518fe811" name="docs/examples/TagCloud_example3.php" role="doc">
+   <file baseinstalldir="HTML" md5sum="63b6d9b76a93835ae0d568ac237daf47" name="docs/examples/TagCloud_example3.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="1992e5957d6190836b2c46e56ae68333" name="docs/examples/TagCloud_example4.php" role="doc">
+   <file baseinstalldir="HTML" md5sum="6a6dcf65bc70f3148578cd7e435f4a1f" name="docs/examples/TagCloud_example4.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="5c1821ca0dc4ed3967e14fdb60c4bae6" name="tests/AllTests.php" role="test">
+   <file baseinstalldir="HTML" md5sum="ee71604419d85cc5aae7e83153363ae3" name="tests/AllTests.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="08abd236933901215f892764581fd906" name="tests/TagCloudTest.php" role="test">
+   <file baseinstalldir="HTML" md5sum="34bfa8e43ce30a3cfd0ef35ee4ee4974" name="tests/TagCloudTest.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="aa88f07252d39c9108e2609b865ec5bc" name="TagCloud.php" role="php">
+   <file baseinstalldir="HTML" md5sum="98ed163cb42c7c8f18dcb0ff83fedb12" name="TagCloud.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
   </dir>
@@ -101,6 +98,13 @@ Fixed issues
     <name>date</name>
    </extension>
   </required>
+  <optional>
+   <package>
+    <name>Image_Color</name>
+    <channel>pear.php.net</channel>
+    <min>1.0.2</min>
+   </package>
+  </optional>
  </dependencies>
  <phprelease />
  <changelog>
@@ -170,6 +174,28 @@ Fixed issues
  - Returned value of _buidHTMLTags was of wrong type if no tags were set up.
    This behaviour has been changed. An empty tag cloud will now be displayed
    with text &quot;not enough data&quot; instead of returning an empty string.</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.0</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-03-05</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>New features
+ - Added ability to set up timeline colors for tags dynamically by setting up a
+    latestColor and a earliestColor and the number of thresholds.
+    (requires PEAR package &quot;Image_Color&quot;)
+ - Added ability to set up multiple tag cloud per page by attaching a unique id
+    to each tag cloud&apos;s individual css class identifiers
+Fixed issues
+ - Fixed issue with setting up basefonsize and fontsizerange on extending class
+   (doesn&apos;t got recognized when instance isn&apos;t constructed with these values;
+   so they were useless in most of the cases)</notes>
   </release>
  </changelog>
 </package>
