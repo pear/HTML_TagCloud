@@ -53,7 +53,7 @@ action at pages like Flickr, Del.icio.us and Technorati. A nice overview on what
 a Tag Cloud can actually do can be found at WikiPedia:
 http://wikipedia.org/wiki/Tag_cloud
 
-This package does not only visualize frequency, but also timeline infomation.
+This package does not only visualize frequency, but also timeline information.
 The newer the tag is, the deeper its color will be; older tags will have a
 lighter color.
 
