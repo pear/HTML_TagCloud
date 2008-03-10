@@ -72,99 +72,21 @@ $packagexml->addMaintainer('lead', 'shomas', 'Shoma Suzuki',
                            'shoma@catbot.net', 'no');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
-// Changelog: Release 0.1.0
-$notes = <<<EOT
-First Release as PEAR Package
-EOT;
-$packagexml->setAPIVersion('0.1.0');
-$packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.1.0');
-$packagexml->setReleaseStability('beta');
-$packagexml->setLicense('PHP License', 'http://www.php.net/license');
-$packagexml->setNotes($notes);
-$packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->setDate('2006-10-02');
-$packagexml->setChangelogEntry('0.1.0', $packagexml->generateChangeLogEntry());
-
-// Changelog: Release 0.1.1
-$notes = <<<EOT
-removed docs/CVS
-EOT;
-$packagexml->setAPIVersion('0.1.1');
-$packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.1.1');
-$packagexml->setReleaseStability('beta');
-$packagexml->setLicense('PHP License', 'http://www.php.net/license');
-$packagexml->setNotes($notes);
-$packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->setDate('2006-10-03');
-$packagexml->setChangelogEntry('0.1.1', $packagexml->generateChangeLogEntry());
-
-// Changelog: Release 0.1.2
-$notes = <<<EOT
-Bug fix release
-
-Fixed bug #10569 "Notice on line 401 running example2.php"
-Fixed bug #12419 "Extended class defines wrong array parameters"
-EOT;
-$packagexml->setAPIVersion('0.1.2');
-$packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.1.2');
-$packagexml->setReleaseStability('beta');
-$packagexml->setLicense('PHP License', 'http://www.php.net/license');
-$packagexml->setNotes($notes);
-$packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->setDate('2006-11-25');
-$packagexml->setChangelogEntry('0.1.2', $packagexml->generateChangeLogEntry());
-
-// Changelog: Release 0.1.3
-$notes = <<<EOT
-Quality review release
- - Heavily applied PEAR Coding Standards
- - extended unit tests
-
-Fixed issues
- - Fixed hard-wired css class name: If cloud consists of one tag and epocLevel
-   was set up by extending the class member, the default value for the css class
-   may be incorrect if it was not "latest". This behaviour has been changed. The
-   value for the css class is now based on the last value of a _epocLevel key
-   string.
- - Returned value of _buidHTMLTags was of wrong type if no tags were set up.
-   This behaviour has been changed. An empty tag cloud will now be displayed
-   with text "not enough data" instead of returning an empty string.
-EOT;
-$packagexml->setAPIVersion('0.1.3');
-$packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.1.3');
-$packagexml->setReleaseStability('beta');
-$packagexml->setLicense('PHP License', 'http://www.php.net/license');
-$packagexml->setNotes($notes);
-$packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->setDate('2008-01-23');
-$packagexml->setChangelogEntry('0.1.3', $packagexml->generateChangeLogEntry());
-
-/* add changelogs for future releases above this line */
-
 // Current Release
-/*$notes = <<<EOT
-New features added
- - Added requested feature #12417 "Adding weighted limitation of elements"
-EOT;*/
 $notes = <<<EOT
-New features
- - Added ability to set up timeline colors for tags dynamically by setting up a
-    latestColor and a earliestColor and the number of thresholds.
-    (requires PEAR package "Image_Color")
- - Added ability to set up multiple tag cloud per page by attaching a unique id
-    to each tag cloud's individual css class identifiers
-Fixed issues
- - Fixed issue with setting up basefonsize and fontsizerange on extending class
-   (doesn't got recognized when instance isn't constructed with these values;
-   so they were useless in most of the cases)
+Fixed issues:
+* fixed bug #13348: PHP warning message when not using timestamps
+* fixed issue with PHP notice message when not using counts
+* fixed issue with PHP notice message when not using urls
+* added missing code documentation to _buildHTMLTags and simplified function calls
+* addElement: name is now mandatory
+
+Feature requests:
+* implemented #12417: Adding weighted limitation of elements
 EOT;
-$packagexml->setAPIVersion('0.2.0');
+$packagexml->setAPIVersion('0.2.1');
 $packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.2.0');
+$packagexml->setReleaseVersion('0.2.1');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->addPackageDepWithChannel('optional', 'Image_Color', 'pear.php.net',
