@@ -80,7 +80,25 @@ class HTML_TagCloudTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testAddElement()
+    public function testAddElement_empty()
+    {
+        $expected = <<<EOT
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest"></a> &nbsp;
+</div>
+
+EOT;
+        $this->htmlTagCloud->addElement('');
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($result, $expected);
+    }
+    
+    /**
+     * test the addElement function
+     *
+     * @return void
+     */
+    public function testAddElement_withName()
     {
         $expected = <<<EOT
 <div class="tagcloud {$this->htmlTagCloud->getUid()}">
@@ -92,13 +110,85 @@ EOT;
         $result = $this->htmlTagCloud->buildHTML();
         $this->assertEquals($result, $expected);
     }
+    
+    /**
+     * test the addElement function
+     *
+     * @return void
+     */
+    public function testAddElement_withNameAndUrl()
+    {
+        $expected = <<<EOT
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="http://example.org" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag0</a> &nbsp;
+</div>
 
+EOT;
+        $this->htmlTagCloud->addElement('tag0', 'http://example.org');
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($result, $expected);
+    }
+
+    /**
+     * test the addElement function
+     *
+     * @return void
+     */
+    public function testAddElement_withNameUrlAndCount()
+    {
+        $expected = <<<EOT
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="http://example.org" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag0</a> &nbsp;
+</div>
+
+EOT;
+        $this->htmlTagCloud->addElement('tag0', 'http://example.org', 100);
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($result, $expected);
+    }
+
+    /**
+     * test the addElement function
+     *
+     * @return void
+     */
+    public function testAddElement_withNameUrlCountAndTimestamp()
+    {
+        $expected = <<<EOT
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="http://example.org" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag0</a> &nbsp;
+</div>
+
+EOT;
+        $this->htmlTagCloud->addElement('tag0', 'http://example.org', 100, time());
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($result, $expected);
+    }
+    
     /**
      * test the addElements function
      *
      * @return void
      */
-    public function testAddElements()
+    public function testAddElements_single()
+    {
+        $expected = <<<EOT
+<div class="tagcloud {$this->htmlTagCloud->getUid()}">
+<a href="" style="font-size:24px;" class="tagcloudElement {$this->htmlTagCloud->getUid()}_latest">tag1</a> &nbsp;
+</div>
+
+EOT;
+        $this->htmlTagCloud->addElements(array($this->addElementsData[0]));
+        $result = $this->htmlTagCloud->buildHTML();
+        $this->assertEquals($result, $expected);
+    }
+    
+    /**
+     * test the addElements function
+     *
+     * @return void
+     */
+    public function testAddElements_multiple()
     {
         $expected = <<<EOT
 <div class="tagcloud {$this->htmlTagCloud->getUid()}">
