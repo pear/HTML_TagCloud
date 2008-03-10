@@ -17,7 +17,7 @@ action at pages like Flickr, Del.icio.us and Technorati. A nice overview on what
 a Tag Cloud can actually do can be found at WikiPedia:
 http://wikipedia.org/wiki/Tag_cloud
 
-This package does not only visualize frequency, but also timeline infomation.
+This package does not only visualize frequency, but also timeline information.
 The newer the tag is, the deeper its color will be; older tags will have a
 lighter color.
 
@@ -40,27 +40,26 @@ Features:
   <email>shoma@catbot.net</email>
   <active>no</active>
  </lead>
- <date>2008-03-05</date>
- <time>12:04:04</time>
+ <date>2008-03-10</date>
+ <time>12:01:49</time>
  <version>
-  <release>0.2.0</release>
-  <api>0.2.0</api>
+  <release>0.2.1</release>
+  <api>0.2.1</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>New features
- - Added ability to set up timeline colors for tags dynamically by setting up a
-    latestColor and a earliestColor and the number of thresholds.
-    (requires PEAR package &quot;Image_Color&quot;)
- - Added ability to set up multiple tag cloud per page by attaching a unique id
-    to each tag cloud&apos;s individual css class identifiers
-Fixed issues
- - Fixed issue with setting up basefonsize and fontsizerange on extending class
-   (doesn&apos;t got recognized when instance isn&apos;t constructed with these values;
-   so they were useless in most of the cases)</notes>
+ <notes>Fixed issues:
+* fixed bug #13348: PHP warning message when not using timestamps
+* fixed issue with PHP notice message when not using counts
+* fixed issue with PHP notice message when not using urls
+* added missing code documentation to _buildHTMLTags and simplified function calls
+* addElement: name is now mandatory
+
+Feature requests:
+* implemented #12417: Adding weighted limitation of elements</notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
    <file baseinstalldir="HTML" md5sum="dd05a51941534fb89fc6738ccac22db1" name="docs/examples/TagCloud_example1.php" role="doc">
@@ -78,10 +77,10 @@ Fixed issues
    <file baseinstalldir="HTML" md5sum="ee71604419d85cc5aae7e83153363ae3" name="tests/AllTests.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="34bfa8e43ce30a3cfd0ef35ee4ee4974" name="tests/TagCloudTest.php" role="test">
+   <file baseinstalldir="HTML" md5sum="4a3fee367e9abcbad88375c635188d0d" name="tests/TagCloudTest.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="98ed163cb42c7c8f18dcb0ff83fedb12" name="TagCloud.php" role="php">
+   <file baseinstalldir="HTML" md5sum="0bf72a4c6f08e133743354942276531e" name="TagCloud.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
   </dir>
@@ -94,9 +93,6 @@ Fixed issues
    <pearinstaller>
     <min>1.4.0b1</min>
    </pearinstaller>
-   <extension>
-    <name>date</name>
-   </extension>
   </required>
   <optional>
    <package>
@@ -184,7 +180,7 @@ Fixed issues
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-03-05</date>
+   <date>2008-03-10</date>
    <license uri="http://www.php.net/license">PHP License</license>
    <notes>New features
  - Added ability to set up timeline colors for tags dynamically by setting up a
@@ -196,6 +192,27 @@ Fixed issues
  - Fixed issue with setting up basefonsize and fontsizerange on extending class
    (doesn&apos;t got recognized when instance isn&apos;t constructed with these values;
    so they were useless in most of the cases)</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.1</release>
+    <api>0.2.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-03-10</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>Fixed issues:
+* fixed bug #13348: PHP warning message when not using timestamps
+* fixed issue with PHP notice message when not using counts
+* fixed issue with PHP notice message when not using urls
+* added missing code documentation to _buildHTMLTags and simplified function calls
+* addElement: name is now mandatory
+
+Feature requests:
+* implemented #12417: Adding weighted limitation of elements</notes>
   </release>
  </changelog>
 </package>
