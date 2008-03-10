@@ -249,7 +249,7 @@ class HTML_TagCloud
      * @access public
      * @since Method available since Release 0.1.0
      */
-    public function addElement($name = '', $url ='', $count = 0, $timestamp = null)
+    public function addElement($name, $url = '', $count = 0, $timestamp = null)
     {
         $i                                = count($this->_elements);
         $this->_elements[$i]['name']      = $name;
@@ -393,47 +393,59 @@ class HTML_TagCloud
      */
     private function _buidHTMLTags($param)
     {
-        $this->total = count($this->_elements);
-        // no tags elements
-        if ($this->total == 0) {
+        // get total number of tags
+        $total = count($this->_elements);
+        if ($total == 0) {
+            // no tag elements, return with "not enough data"
             return '<p>not enough data</p>'."\n";
-        } elseif ($this->total == 1) {
-            $tag = $this->_elements[0];
-            return $this->createHTMLTag($tag, $this->_uid.'_'
-                              .key($this->epocLevel[count($this->epocLevel)-1]),
-                              $this->baseFontSize);
+        } elseif ($total == 1) {
+            // only 1 element was set, no need to process sizes or colors, so
+            // just create html with standard setup and return
+            $tag  = $this->_elements[0];
+            $type = $this->_uid.'_'
+                   .key($this->epocLevel[count($this->epocLevel) - 1]);
+            return $this->createHTMLTag($tag, $type, $this->baseFontSize);
         }
-
+        // okay, there are more elements, let's calculate their environment
+        // at first, check if there is a limit of returned elements set up
         $limit = array_key_exists('limit', $param) ? $param['limit'] : 0;
+        // sort elements, consider limit if available ("0" will disable limit)
         $this->_sortTags($limit);
+        // get maximum and minimum count values
+        //  (values will be stored in $this->_min and $this->_max
         $this->_calcMumCount();
+        // get maximum and minimum timestamp values
+        //  (values will be stored in $this->_minEpoc and $this->_maxEpoc
         $this->_calcMumEpoc();
-
+        // get font size delta
         $range = $this->_maxFontSize - $this->_minFontSize;
+        // calculate the factor for building the font size deltas
         if ($this->_max != $this->_min) {
             $this->_factor = $range / (sqrt($this->_max) - sqrt($this->_min));
         } else {
             $this->_factor = 1;
         }
-
+        // calculate the factor for building the color deltas
         if ($this->_maxEpoc != $this->_minEpoc) {
-            $this->_epocFactor = count($this->epocLevel)
-                                   / (sqrt($this->_maxEpoc) - sqrt($this->_minEpoc));
+            $this->_epocFactor = count($this->epocLevel) /
+                                 (sqrt($this->_maxEpoc) - sqrt($this->_minEpoc));
         } else {
             $this->_epocFactor = 1;
         }
+        // build html
         $rtn = array();
         foreach ($this->_elements as $tag) {
-            $countLv = $this->_getCountLevel($tag['count']);
+            $count   = isset($tag['count']) ? $tag['count'] : 0;
+            $countLv = $this->_getCountLevel($count);
             if (!isset($tag['timestamp']) || empty($tag['timestamp'])) {
                 $epocLv = count($this->epocLevel) - 1;
             } else {
                 $epocLv = $this->_getEpocLevel($tag['timestamp']);
             }
             $colorType = $this->epocLevel[$epocLv];
+            $type      = $this->_uid.'_'.key($colorType);
             $fontSize  = $this->_minFontSize + $countLv;
-            $rtn[]     = $this->createHTMLTag($tag, $this->_uid.'_'.key($colorType),
-                                              $fontSize);
+            $rtn[]     = $this->createHTMLTag($tag, $type, $fontSize);
         }
         return implode('', $rtn);
     }
@@ -481,9 +493,11 @@ class HTML_TagCloud
      */
     protected function createHTMLTag($tag, $type, $fontSize)
     {
-        return '<a href="'.$tag['url'].'" style="font-size:'
-               .$fontSize.$this->sizeSuffix.';" class="tagcloudElement '.$type.'">'
-               .htmlspecialchars($tag['name']).'</a> &nbsp;'."\n";
+        return '<a href="'.(!empty($tag['url']) ? $tag['url'] : '').'"'
+               .' style="font-size:'.$fontSize.$this->sizeSuffix.';"'
+               .' class="tagcloudElement '.$type.'">'
+               .htmlspecialchars($tag['name'])
+               .'</a> &nbsp;'."\n";
     }
 
     // }}}
@@ -532,9 +546,12 @@ class HTML_TagCloud
      */
     private function _sortTags($limit = 0)
     {
-        usort($this->_elements, array($this, '_cmpElementsName'));
         if ($limit != 0) {
+            usort($this->_elements, array($this, "_cmpElementsCountTimestamp"));
             $this->_elements = array_splice($this->_elements, 0, $limit);
+            usort($this->_elements, array($this, "_cmpElementsName"));
+        } else {
+            usort($this->_elements, array($this, "_cmpElementsName"));
         }
     }
 
@@ -542,7 +559,7 @@ class HTML_TagCloud
     // {{{ private function _cmpElementsName()
 
     /**
-     * using for usort()
+     * callback for usort(), considers string value "name" of a tag element
      *
      * @param array $a first element to compare
      * @param array $b second element to compare
@@ -559,12 +576,39 @@ class HTML_TagCloud
         }
         return ($a['name'] < $b['name']) ? -1 : 1;
     }
+    
+    // }}}
+    // {{{ private function _cmpElementsCountTimestamp($a, $b)
+    
+    /**
+     * callback for usort(), considers count and if count values are equal it
+     *  considers timestamp as well. 
+     *
+     * @param array $a first element to compare
+     * @param array $b second element to compare
+     *
+     * @return  int (bool)
+     *
+     * @access  public
+     * @since Method available since Release 0.2.1
+     */
+    private function _cmpElementsCountTimestamp($a, $b)
+    {
+        if ($a['count'] == $b['count']) {
+            if ($a['timestamp'] == $b['timestamp']) {
+                return 0;
+            } else {
+                return ($a['timestamp'] > $b['timestamp']) ? -1 : 1;
+            }
+        }
+        return ($a['count'] > $b['count']) ? -1 : 1;
+    }
 
     // }}}
     // {{{ private function _calcMumCount()
 
     /**
-     * calc max and min tag count of use
+     * calc max and min tag count values
      *
      * @return void
      *
@@ -573,8 +617,13 @@ class HTML_TagCloud
      */
     private function _calcMumCount()
     {
+        $array = array();
         foreach ($this->_elements as $item) {
-            $array[] = $item['count'];
+            if (isset($item['count'])) {
+                $array[] = (int)$item['count'];
+            } else {
+                $array[] = 0;
+            }
         }
         $this->_min = min($array);
         $this->_max = max($array);
@@ -596,7 +645,9 @@ class HTML_TagCloud
         $array = array();
         foreach ($this->_elements as $item) {
             if (isset($item['timestamp'])) {
-                $array[] = $item['timestamp'];
+                $array[] = (int)$item['timestamp'];
+            } else {
+                $array[] = time();
             }
         }
         $this->_minEpoc = min($array);
