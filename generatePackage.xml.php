@@ -74,19 +74,13 @@ $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
 // Current Release
 $notes = <<<EOT
-Fixed issues:
-* fixed bug #13348: PHP warning message when not using timestamps
-* fixed issue with PHP notice message when not using counts
-* fixed issue with PHP notice message when not using urls
-* added missing code documentation to _buildHTMLTags and simplified function calls
-* addElement: name is now mandatory
-
 Feature requests:
-* implemented #12417: Adding weighted limitation of elements
+* implemented req #13598: Add public getElementCount() method to return the
+  number of elements in a cloud
 EOT;
-$packagexml->setAPIVersion('0.2.1');
+$packagexml->setAPIVersion('0.2.2');
 $packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.2.1');
+$packagexml->setReleaseVersion('0.2.2');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->addPackageDepWithChannel('optional', 'Image_Color', 'pear.php.net',

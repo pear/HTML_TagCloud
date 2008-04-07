@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.7.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package packagerversion="1.7.0RC1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
@@ -40,26 +40,20 @@ Features:
   <email>shoma@catbot.net</email>
   <active>no</active>
  </lead>
- <date>2008-03-10</date>
- <time>12:01:49</time>
+ <date>2008-04-07</date>
+ <time>21:19:35</time>
  <version>
-  <release>0.2.1</release>
-  <api>0.2.1</api>
+  <release>0.2.2</release>
+  <api>0.2.2</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>Fixed issues:
-* fixed bug #13348: PHP warning message when not using timestamps
-* fixed issue with PHP notice message when not using counts
-* fixed issue with PHP notice message when not using urls
-* added missing code documentation to _buildHTMLTags and simplified function calls
-* addElement: name is now mandatory
-
-Feature requests:
-* implemented #12417: Adding weighted limitation of elements</notes>
+ <notes>Feature requests:
+* implemented req #13598: Add public getElementCount() method to return the
+  number of elements in a cloud</notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
    <file baseinstalldir="HTML" md5sum="dd05a51941534fb89fc6738ccac22db1" name="docs/examples/TagCloud_example1.php" role="doc">
@@ -77,10 +71,10 @@ Feature requests:
    <file baseinstalldir="HTML" md5sum="ee71604419d85cc5aae7e83153363ae3" name="tests/AllTests.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="4a3fee367e9abcbad88375c635188d0d" name="tests/TagCloudTest.php" role="test">
+   <file baseinstalldir="HTML" md5sum="6bc5f3b88c9b2872d2daa8821f764f43" name="tests/TagCloudTest.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="0bf72a4c6f08e133743354942276531e" name="TagCloud.php" role="php">
+   <file baseinstalldir="HTML" md5sum="6fd5a3780475849406e0f3f4e5f3e046" name="TagCloud.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
   </dir>
@@ -93,6 +87,9 @@ Feature requests:
    <pearinstaller>
     <min>1.4.0b1</min>
    </pearinstaller>
+   <extension>
+    <name>date</name>
+   </extension>
   </required>
   <optional>
    <package>
@@ -202,7 +199,7 @@ Fixed issues
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-03-10</date>
+   <date>2008-04-07</date>
    <license uri="http://www.php.net/license">PHP License</license>
    <notes>Fixed issues:
 * fixed bug #13348: PHP warning message when not using timestamps
@@ -213,6 +210,21 @@ Fixed issues
 
 Feature requests:
 * implemented #12417: Adding weighted limitation of elements</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.2</release>
+    <api>0.2.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-04-07</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>Feature requests:
+* implemented req #13598: Add public getElementCount() method to return the
+  number of elements in a cloud</notes>
   </release>
  </changelog>
 </package>
