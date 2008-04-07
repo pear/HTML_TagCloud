@@ -234,6 +234,22 @@ class HTML_TagCloud
     }
 
     // }}}
+    // {{{ public function getElementCount()
+
+    /**
+     * returns the number of elements in the tag cloud
+     *
+     * @return integer number of elements in the tag cloud
+     *
+     * @access public
+     * @since Method available since Release 0.2.2
+     */
+    public function getElementCount()
+    {
+        return count($this->_elements);
+    }
+
+    // }}}
     // {{{ public function addElement()
 
     /**
