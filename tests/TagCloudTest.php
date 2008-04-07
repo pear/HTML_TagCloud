@@ -313,6 +313,18 @@ EOT;
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * test the getElementCount function
+     *
+     * @return void
+     */
+    public function getElementCount()
+    {
+        $expected = 4;
+        $this->htmlTagCloud->addElements($this->addElementsData);
+        $result = $this->htmlTagCloud->getElementCount();
+        $this->assertEquals($expected, $result);
+    }
 }
 
 ?>
