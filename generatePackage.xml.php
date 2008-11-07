@@ -1,9 +1,8 @@
 <?php
-
 /**
  * generatePackage.xml.php
  *
- * Generates the package.xml file (version 2)
+ * Generates the package2.xml file
  *
  * PHP version 5
  *
@@ -67,20 +66,19 @@ Features:
 EOT;
 $packagexml->setDescription($description);
 $packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken',
-                           'bastian.onken@gmx.net', 'yes');
+                           'bastian.onken'.'@'.'gmail.com', 'yes');
 $packagexml->addMaintainer('lead', 'shomas', 'Shoma Suzuki',
-                           'shoma@catbot.net', 'no');
+                           'shoma'.'@'.'catbot.net', 'no');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
 // Current Release
 $notes = <<<EOT
 Feature requests:
-* implemented req #13598: Add public getElementCount() method to return the
-  number of elements in a cloud
+* fixed bug #14965: generateEpocLevel can't actually be used
 EOT;
-$packagexml->setAPIVersion('0.2.2');
+$packagexml->setAPIVersion('0.2.3');
 $packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.2.2');
+$packagexml->setReleaseVersion('0.2.3');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->addPackageDepWithChannel('optional', 'Image_Color', 'pear.php.net',
