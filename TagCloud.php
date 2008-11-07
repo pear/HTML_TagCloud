@@ -536,7 +536,7 @@ class HTML_TagCloud
         include_once 'Image/Color.php';
         $imageColor = new Image_Color();
         $imageColor->setWebSafe(false);
-        $imageColor->setColors('000090', 'FFFFFF');
+        $imageColor->setColors($latestColor, $earliestColor);
         $epocLevel = array();
         foreach ($imageColor->getRange($thresholds) as $key => $color) {
             $epocLevel[]['epocLevel'.$key] = array(
@@ -592,13 +592,13 @@ class HTML_TagCloud
         }
         return ($a['name'] < $b['name']) ? -1 : 1;
     }
-    
+
     // }}}
     // {{{ private function _cmpElementsCountTimestamp($a, $b)
-    
+
     /**
      * callback for usort(), considers count and if count values are equal it
-     *  considers timestamp as well. 
+     *  considers timestamp as well.
      *
      * @param array $a first element to compare
      * @param array $b second element to compare
