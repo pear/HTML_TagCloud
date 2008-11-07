@@ -1,5 +1,4 @@
 <?php
-
 /**
  * TagCloud.php
  *
@@ -47,33 +46,39 @@ class HTML_TagCloud
     // {{{ properties
 
     /**
-     * @var    int
-     * @access protected
+     * Defines the base font size
+     *
+     * @var int
      */
     protected $baseFontSize = 24;
 
     /**
-     * @var    int
-     * @access protected
+     * Limits the range of generated font-sizes
+     *
+     * @var int
      */
     protected $fontSizeRange = 12;
 
     /**
-     * @var    string
-     * @access protected
+     * Name of CSS class the TagCloud will get (assigned to the div the cloud
+     * will get wrapped into)
+     *
+     * @var string
      */
     protected $cssClass = 'tagcloud';
 
     /**
-     * @var    string
-     * @access protected
-     * mm,cm,in,pt,pc,px,em
+     * Stores the font-size unit, potentional values are: mm,cm,in,pt,pc,px,em
+     *
+     * @var string
      */
     protected $sizeSuffix = 'px';
 
     /**
-     * @var    array
-     * @access protected
+     * Defines colors of the different levels to that tags will be assigned to
+     * (based on tag's age)
+     *
+     * @var array
      */
     protected $epocLevel = array(
         array(
@@ -111,62 +116,57 @@ class HTML_TagCloud
     );
 
     /**
-     * @var    array
-     * @access private
+     * Stores the TagCloud elements
+     *
+     * @var array
      */
     private $_elements = array();
 
     /**
-     * @var    int
-     * @access private
+     * @var int
      */
     private $_max = 0;
 
     /**
-     * @var    int
-     * @access private
+     * @var int
      */
     private $_min = 0;
 
     /**
-     * @var    int
-     * @access private
+     * @var int
      */
     private $_maxEpoc;
 
     /**
-     * @var    int
-     * @access private
+     * @var int
      */
     private $_minEpoc;
 
     /**
-     * @var    float
-     * @access private
+     * @var float
      */
     private $_factor = 1;
 
     /**
-     * @var    float
-     * @access private
+     * @var float
      */
     private $_epocFactor = 1;
 
     /**
-     * @var    int
-     * @access protected
+     * @var int
      */
     private $_minFontSize;
 
     /**
-     * @var    int
-     * @access protected
+     * @var int
      */
     private $_maxFontSize;
 
     /**
-     * @var    string
-     * @access public
+     * Stores an unique TagCloud-ID, necessary for multiple TagClouds on one
+     * HTML page
+     *
+     * @var string
      */
     private $_uid;
 
@@ -182,7 +182,6 @@ class HTML_TagCloud
      * @param string $earliestColor color of earliest tag (usually light)
      * @param int    $thresholds    number of timelines to set up
      *
-     * @access public
      * @since Method available since Release 0.1.0
      */
     public function __construct($baseFontSize = null, $fontSizeRange = null,
@@ -225,7 +224,6 @@ class HTML_TagCloud
      *
      * @return string unique id
      *
-     * @access public
      * @since Method available since Release 0.2.0
      */
     public function getUid()
@@ -241,7 +239,6 @@ class HTML_TagCloud
      *
      * @return integer number of elements in the tag cloud
      *
-     * @access public
      * @since Method available since Release 0.2.2
      */
     public function getElementCount()
@@ -262,7 +259,6 @@ class HTML_TagCloud
      *
      * @return void
      *
-     * @access public
      * @since Method available since Release 0.1.0
      */
     public function addElement($name, $url = '', $count = 0, $timestamp = null)
@@ -284,7 +280,6 @@ class HTML_TagCloud
      *
      * @return  void
      *
-     * @access  public
      * @since Method available since Release 0.1.0
      */
     public function addElements($tags)
@@ -300,7 +295,6 @@ class HTML_TagCloud
      *
      * @return void
      *
-     * @access public
      * @since Method available since Release 0.1.0
      */
     public function clearElements()
@@ -318,7 +312,6 @@ class HTML_TagCloud
      *
      * @return string HTML and CSS
      *
-     * @access public
      * @since Method available since Release 0.1.0
      */
     public function buildAll($param = array())
@@ -339,7 +332,6 @@ class HTML_TagCloud
      *
      * @return string HTML and CSS
      *
-     * @access public
      * @see HTML_TagCloud::_buildAll
      * @since Method available since Release 0.1.0
      * @deprecated Method deprecated in Release 0.1.3
@@ -360,7 +352,6 @@ class HTML_TagCloud
      *
      * @return string HTML
      *
-     * @access public
      * @since Method available since Release 0.1.0
      */
     public function buildHTML($param = array())
@@ -377,7 +368,6 @@ class HTML_TagCloud
      *
      * @return string base CSS
      *
-     * @access public
      * @since Method available since Release 0.1.0
      */
     public function buildCSS()
@@ -404,7 +394,6 @@ class HTML_TagCloud
      *
      * @return string HTML
      *
-     * @access private
      * @since Method available since Release 0.1.0
      */
     private function _buidHTMLTags($param)
@@ -481,7 +470,6 @@ class HTML_TagCloud
      *
      * @return string a Element of Tag HTML
      *
-     * @access protected
      * @see HTML_TagCloud::createHTMLTag()
      * @since Method available since Release 0.1.0
      * @deprecated Method deprecated in Release 0.1.3
@@ -504,7 +492,6 @@ class HTML_TagCloud
      *
      * @return string a Element of Tag HTML
      *
-     * @access protected
      * @since Method available since Release 0.1.3
      */
     protected function createHTMLTag($tag, $type, $fontSize)
@@ -528,7 +515,6 @@ class HTML_TagCloud
      *
      * @return array epocLevel
      *
-     * @access private
      * @since Method available since Release 0.2.0
      */
     private function _generateEpocLevel($latestColor, $earliestColor, $thresholds)
@@ -557,7 +543,6 @@ class HTML_TagCloud
      *
      * @return array
      *
-     * @access private
      * @since Method available since Release 0.1.0
      */
     private function _sortTags($limit = 0)
@@ -582,7 +567,6 @@ class HTML_TagCloud
      *
      * @return int (bool)
      *
-     * @access public
      * @since Method available since Release 0.1.0
      */
     private function _cmpElementsName($a, $b)
@@ -603,9 +587,8 @@ class HTML_TagCloud
      * @param array $a first element to compare
      * @param array $b second element to compare
      *
-     * @return  int (bool)
+     * @return int (bool)
      *
-     * @access  public
      * @since Method available since Release 0.2.1
      */
     private function _cmpElementsCountTimestamp($a, $b)
@@ -628,7 +611,6 @@ class HTML_TagCloud
      *
      * @return void
      *
-     * @access private
      * @since Method available since Release 0.1.0
      */
     private function _calcMumCount()
@@ -653,7 +635,6 @@ class HTML_TagCloud
      *
      * @return void
      *
-     * @access private
      * @since Method available since Release 0.1.0
      */
     private function _calcMumEpoc()
@@ -680,7 +661,6 @@ class HTML_TagCloud
      *
      * @return int level
      *
-     * @access private
      * @since Method available since Release 0.1.0
      */
     private function _getCountLevel($count = 0)
@@ -698,7 +678,6 @@ class HTML_TagCloud
      *
      * @return int level of timeline
      *
-     * @access private
      * @since Method available since Release 0.1.0
      */
     private function _getEpocLevel($timestamp = 0)
@@ -716,7 +695,6 @@ class HTML_TagCloud
      *
      * @return string HTML wrapped into a div set up with $this::cssClass
      *
-     * @access private
      * @since Method available since Release 0.1.0
      */
     private function _wrapDiv($html)

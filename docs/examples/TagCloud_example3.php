@@ -1,5 +1,4 @@
 <?php
-
 /**
  * TagCloud_example3.php
  *
@@ -29,6 +28,9 @@
 
 require_once 'HTML/TagCloud.php';
 
+// To get the date function working properly we have to set the time zone
+date_default_timezone_set('UTC');
+
 // {{{ class MyTags extends HTML_TagCloud{
 
 /**
@@ -48,6 +50,13 @@ require_once 'HTML/TagCloud.php';
  */
 class MyTags extends HTML_TagCloud
 {
+    /**
+     * Defines colors of the different levels that tags will be assigned to
+     * (based on tag's age)
+     *
+     * @var    array
+     * @access protected
+     */
     protected $epocLevel = array(
         array(
             'earliest' => array(
@@ -98,26 +107,49 @@ class MyTags extends HTML_TagCloud
             ),
         ),
     );
-    protected $sizeSuffix = 'pt';
+
+    /**
+     * Stores the font-size unit, potentional values are: mm,cm,in,pt,pc,px,em
+     *
+     * @var    string
+     * @access protected
+     */
+    protected $sizeSuffix    = 'pt';
+
+    /**
+     * Limits the range of generated font-sizes
+     *
+     * @var    int
+     * @access protected
+     */
     protected $fontSizeRange = 0;
-    protected $baseFontSize = 12;
+
+    /**
+     * Defines the base font size
+     *
+     * @var    int
+     * @access protected
+     */
+    protected $baseFontSize  = 12;
 }
 
 // }}}
 
-date_default_timezone_set('UTC');
-
+// Create an instance of our extended HTML_TagCloud we prepared above
 $tags = new MyTags();
-// add Elements (same as in example1)
+
+// Add Elements (same as TagCloud_example1.php)
 $tags->addElement('PHP', 'http://www.php.net', 39, strtotime('-1 day'));
 $tags->addElement('XML', 'http://www.xml.org', 21, strtotime('-2 week'));
 $tags->addElement('Perl', 'http://www.perl.org', 15, strtotime('-1 month'));
 $tags->addElement('PEAR', 'http://pear.php.net', 32, time());
 $tags->addElement('MySQL', 'http://www.mysql.com', 10, strtotime('-2 day'));
 $tags->addElement('PostgreSQL', 'http://pgsql.com', 6, strtotime('-3 week'));
-// output HTML and CSS
+
+// Print out HTML and CSS
 print $tags->buildALL();
 
+// Show source, you don't need this line in your code, it's just for showing off
 show_source(__FILE__);
 
 ?>

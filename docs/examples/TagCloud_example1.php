@@ -1,5 +1,4 @@
 <?php
-
 /**
  * TagCloud_example1.php
  *
@@ -25,19 +24,24 @@
 
 require_once 'HTML/TagCloud.php';
 
+// To get the date function working properly we have to set the time zone
 date_default_timezone_set('UTC');
 
+// Create an instance of HTML_TagCloud with default behaviour
 $tags = new HTML_TagCloud();
-// add Elements
+
+// Add some elements
 $tags->addElement('PHP', 'http://www.php.net', 39, strtotime('-1 day'));
 $tags->addElement('XML', 'http://www.xml.org', 21, strtotime('-2 week'));
 $tags->addElement('Perl', 'http://www.perl.org', 15, strtotime('-1 month'));
 $tags->addElement('PEAR', 'http://pear.php.net', 32, time());
 $tags->addElement('MySQL', 'http://www.mysql.com', 10, strtotime('-2 day'));
 $tags->addElement('PostgreSQL', 'http://pgsql.com', 6, strtotime('-3 week'));
-// output HTML and CSS
+
+// Print out HTML and CSS
 print $tags->buildALL();
 
+// Show source, you don't need this line in your code, it's just for showing off
 show_source(__FILE__);
 
 ?>

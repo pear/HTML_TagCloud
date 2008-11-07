@@ -1,5 +1,4 @@
 <?php
-
 /**
  * TagCloud_example2.php
  *
@@ -27,29 +26,39 @@
 
 require_once 'HTML/TagCloud.php';
 
+// To get the date function working properly we have to set the time zone
 date_default_timezone_set('UTC');
 
+// Set up new font sizes
 $baseFontSize  = 36;
 $fontSizeRange = 24;
-// Tag size range in ($baseFontSize - $fontSizeRange) to
-// ($baseFontSize + $fontSizeRange).
+
+// Create an instance of HTML_TagCloud with non-default font sizes
 $tags = new HTML_TagCloud($baseFontSize, $fontSizeRange);
+
+// Prepare some items, without specifying the timestamp (this way they will get
+//  the actual timestamp)
 $name = 'a';
-// set a item without timestamp
 foreach (range(0, 15) as $i) {
     $arr[$i]['name']  = $name;
     $arr[$i]['url']   = '#';
     $arr[$i]['count'] = $i;
     $name++;
 }
-// set many item at once by array
+
+// Submit the prepared items to the TagCloud
 $tags->addElements($arr);
 $tags->addElement('H', '#', 16);
 $tags->addElement('P', '#', 18);
-// CSS part only
+
+// Get the CSS part only
 $css = $tags->buildCSS();
-// html part only
+
+// Get the HTML part only
 $taghtml = $tags->buildHTML();
+
+// Now return a HTML page and display the CSS-part and the HTML-part in
+//  separated positions
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
@@ -58,14 +67,22 @@ $taghtml = $tags->buildHTML();
 <title>My first Tag Cloud</title>
 <style type="text/css">
 <?php
+
+// Print CSS-part of the TagCloud
 print $css;
+
 ?>
 </style>
 </head>
 <body>
 <?php
+
+// Print HTML-part of the TagCloud
 print $taghtml;
+
+// Show source, you don't need this line in your code, it's just for showing off
 show_source(__FILE__);
+
 ?>
 </body>
 </html>
