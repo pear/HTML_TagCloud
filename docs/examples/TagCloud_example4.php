@@ -1,9 +1,8 @@
 <?php
-
 /**
  * TagCloud_example4.php
  *
- * Generate a more customized Tag Cloud by extending the class.
+ * Generate a more customized Tag Cloud.
  * This example shows how the timeline information and number of occurrences of
  * tag are visualized. Additionally it shows how to set up own css styles.
  * The second part of this example shows how to disable timeline processing.
@@ -28,6 +27,9 @@
 
 require_once 'HTML/TagCloud.php';
 
+// To get the date function working properly we have to set the time zone
+date_default_timezone_set('UTC');
+
 /**
  * MyTagsCustomCss extends HTML_TagCloud
  *
@@ -47,29 +49,32 @@ class MyTagsCustomCss extends HTML_TagCloud
     protected $sizeSuffix = '%';
 }
 
-date_default_timezone_set('UTC');
-
+// Set up new font sizes, now we use percentual values
 $baseFontSize  = 140;
 $fontSizeRange = 50;
-$dummyURL      = 'http://example.org';
-// Tag font size range will result in ($baseFontSize - $fontSizeRange) to
-// ($baseFontSize + $fontSizeRange).
+
+// Create an instance of our customized HTML_TagCloud we defined above with
+//  non-default font sizes and non-default font colors, also increase the number
+//  of colors used
 $tags = new MyTagsCustomCss($baseFontSize, $fontSizeRange, '000090', 'FFFFFF', 6);
-// every element has a high count
+
+// Add some elements
+$dummyURL = 'http://example.org';
+// Following elements have a high count
 $tags->addElement('oneYearOld(38)', $dummyURL, 38, strtotime('-1 year'));
 $tags->addElement('halfAYearOld(34)', $dummyURL, 34, strtotime('-6 month'));
 $tags->addElement('threeMonthOld(33)', $dummyURL, 33, strtotime('-3 month'));
 $tags->addElement('oneMonthOld(36)', $dummyURL, 36, strtotime('-1 month'));
 $tags->addElement('oneWeekOld(37)', $dummyURL, 37, strtotime('-1 week'));
 $tags->addElement('now(35)', $dummyURL, 35, strtotime('now'));
-// same elements, but medium count
+// Following elements are the same as above, but they have a medium count
 $tags->addElement('oneYearOld(18)', $dummyURL, 18, strtotime('-1 year'));
 $tags->addElement('halfAYearOld(14)', $dummyURL, 14, strtotime('-6 month'));
 $tags->addElement('threeMonthOld(13)', $dummyURL, 13, strtotime('-3 month'));
 $tags->addElement('oneMonthOld(16)', $dummyURL, 16, strtotime('-1 month'));
 $tags->addElement('oneWeekOld(17)', $dummyURL, 17, strtotime('-1 week'));
 $tags->addElement('now(15)', $dummyURL, 15, strtotime('now'));
-// same elements, but low count
+// Following elements are tje same as above, but they have a low count
 $tags->addElement('oneYearOld(6)', $dummyURL, 6, strtotime('-1 year'));
 $tags->addElement('halfAYearOld(2)', $dummyURL, 2, strtotime('-6 month'));
 $tags->addElement('threeMonthOld(1)', $dummyURL, 1, strtotime('-3 month'));
@@ -77,8 +82,11 @@ $tags->addElement('oneMonthOld(4)', $dummyURL, 4, strtotime('-1 month'));
 $tags->addElement('oneWeekOld(5)', $dummyURL, 5, strtotime('-1 week'));
 $tags->addElement('now(3)', $dummyURL, 3, strtotime('now'));
 
-$tags2 = new MyTagsCustomCss($baseFontSize, $fontSizeRange, '000090', 'FFFFFF', 1);
-// set up some tags
+// Create an instance of our customized TagCloud we defined above and disable
+//  the mumber of used colors by setting the 5th parameter to 1
+$tags2 = new MyTagsCustomCss($baseFontSize, $fontSizeRange, 'FF0000', 'FFFB00', 1);
+
+// Set up some tags
 $tagFixtures = array(
     'blogs',
     'folksonomy',
@@ -92,7 +100,8 @@ $tagFixtures = array(
     'design',
     'mobility'
 );
-// set up some time occurrences
+
+// Set up some time occurrences
 $timeFixtures = array(
     '-1 year',
     '-6 month',
@@ -101,18 +110,21 @@ $timeFixtures = array(
     '-1 week',
     '-1 day'
 );
-// create randomized tags
+
+// Build and add randomized tags to the TagCloud
 foreach ($tagFixtures as $tag) {
-    // set up how many occurrences this tag has
+    // Set up how many occurrences this tag has
     $numberOfOccurrences = rand(1, 50);
-    // randomize through the time fixtures and set up the oldness of this tag
+    // Randomize through the time fixtures and set up the age of this tag
     $time = $timeFixtures[rand(0, count($timeFixtures)-1)];
-    // finally add it to the cloud, to see how the time and count values are
+    // Finally add it to the cloud, to see how the time and count values are
     //  interpreted we add them to the tagname to see their current value
     //$tag = $tag.'('.$numberOfOccurrences.','.str_replace(' ', '', $time).')';
     $tags2->addElement($tag, $dummyURL, $numberOfOccurrences, strtotime($time));
 }
 
+// Now return a HTML page that contains additional TagCloud style definitions
+//  and display both TagClouds we created above
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
@@ -156,8 +168,11 @@ foreach ($tagFixtures as $tag) {
     vertical-align: middle;
 }
 <?php
+
+// Print out CSS
 print $tags->buildCSS();
 print $tags2->buildCSS();
+
 ?>
 </style>
 </head>
@@ -165,15 +180,25 @@ print $tags2->buildCSS();
 <p>First box shows how the timeline information is expressed in detail. There is
 a static tag cloud of which tags have been named according to their time value:
 </p>
-<?php print $tags->buildHTML(); ?>
+<?php
+
+// Print out HTML
+print $tags->buildHTML();
+
+?>
 <p>Second box shows a randomized tag cloud, hit reload to mix them up. Note: At
 this tag cloud there is no timeline information displayed (allthough there is
 timeline information set up). Here's how you deactivate it: Set the number of
 epocLevels at your own extended class to one or set the threshold of the
 to-be-generated epocLevel to '1' at constructor time:</p>
 <?php
+
+// Print out HTML
 print $tags2->buildHTML();
+
+// Show source, you don't need this line in your code, it's just for showing off
 show_source(__FILE__);
+
 ?>
 </body>
 </html>
