@@ -114,7 +114,7 @@ class MyTags extends HTML_TagCloud
      * @var    string
      * @access protected
      */
-    protected $sizeSuffix    = 'pt';
+    protected $sizeSuffix = 'pt';
 
     /**
      * Limits the range of generated font-sizes
@@ -130,7 +130,7 @@ class MyTags extends HTML_TagCloud
      * @var    int
      * @access protected
      */
-    protected $baseFontSize  = 12;
+    protected $baseFontSize = 12;
 }
 
 // }}}
