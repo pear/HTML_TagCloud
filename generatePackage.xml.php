@@ -73,8 +73,8 @@ $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
 // Current Release
 $notes = <<<EOT
-Feature requests:
-* fixed bug #14965: generateEpocLevel can't actually be used
+Bug fixes:
+* bug #14965: generateEpocLevel can't actually be used
 EOT;
 $packagexml->setAPIVersion('0.2.3');
 $packagexml->setAPIStability('beta');
