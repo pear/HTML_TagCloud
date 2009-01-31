@@ -1,5 +1,4 @@
 <?php
-
 /**
  * algorithm.php (created on 20.12.2007 20:33:23)
  *
@@ -15,7 +14,7 @@
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
@@ -79,7 +78,8 @@ function logarithmicSmoothing(Array $tags)
 {
     global $graphScale;
     foreach ($tags as $tag => $count) {
-        //$tags[$tag] = log($count + 1, (max($tags) + min($tags)) / 2) * ((max($tags) + min($tags)) / 2);
+        //$tags[$tag] = log($count + 1, (max($tags) + min($tags)) / 2)
+        //    * ((max($tags) + min($tags)) / 2);
         //$tags[$tag] = log($count + 1, max($tags)) * max($tags);
         $tags[$tag] = log($count + 1, max($tags)) * (max($tags) + min($tags)) / 2;
     }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * TagCloudTest.php (created on 26.11.2007 12:33:43)
  *
@@ -15,7 +14,7 @@
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
@@ -33,7 +32,7 @@ require_once 'PHPUnit/Framework.php';
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   Release: @package_version@
@@ -92,7 +91,7 @@ EOT;
         $result = $this->htmlTagCloud->buildHTML();
         $this->assertEquals($result, $expected);
     }
-    
+
     /**
      * test the addElement function
      *
@@ -110,7 +109,7 @@ EOT;
         $result = $this->htmlTagCloud->buildHTML();
         $this->assertEquals($result, $expected);
     }
-    
+
     /**
      * test the addElement function
      *
@@ -164,7 +163,7 @@ EOT;
         $result = $this->htmlTagCloud->buildHTML();
         $this->assertEquals($result, $expected);
     }
-    
+
     /**
      * test the addElements function
      *
@@ -182,7 +181,7 @@ EOT;
         $result = $this->htmlTagCloud->buildHTML();
         $this->assertEquals($result, $expected);
     }
-    
+
     /**
      * test the addElements function
      *
@@ -326,5 +325,3 @@ EOT;
         $this->assertEquals($expected, $result);
     }
 }
-
-?>

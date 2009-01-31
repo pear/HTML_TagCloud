@@ -1,5 +1,4 @@
 <?php
-
 /**
  * AllTests.php (created on 23.01.2008 12:33:43)
  *
@@ -15,7 +14,7 @@
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
@@ -41,7 +40,7 @@ require_once dirname(__FILE__) . '/TagCloudTest.php';
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   Release: @package_version@
@@ -76,5 +75,3 @@ class HTML_TagCloud_AllTests
 if (PHPUnit_MAIN_METHOD == 'HTML_TagCloud_AllTests::main') {
     HTML_TagCloud_AllTests::main();
 }
-
-?>

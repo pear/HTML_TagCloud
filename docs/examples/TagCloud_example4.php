@@ -17,7 +17,7 @@
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
@@ -37,7 +37,7 @@ date_default_timezone_set('UTC');
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   Release: @package_version@

@@ -14,7 +14,7 @@
  *
  * @category  HTML
  * @package   HTML_TagCloud
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
@@ -66,7 +66,7 @@ Features:
 EOT;
 $packagexml->setDescription($description);
 $packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken',
-                           'bastian.onken'.'@'.'gmail.com', 'yes');
+                           'bastianonken'.'@'.'php.net', 'yes');
 $packagexml->addMaintainer('lead', 'shomas', 'Shoma Suzuki',
                            'shoma'.'@'.'catbot.net', 'no');
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
@@ -119,5 +119,3 @@ if (   isset($_GET['make'])
     //$pkg->debugPackageFile();
     $packagexml->debugPackageFile();
 }
-
-?>

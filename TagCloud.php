@@ -15,7 +15,7 @@
  * @category  HTML
  * @package   HTML_TagCloud
  * @author    Shoma Suzuki <shoma@catbot.net>
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   CVS: $Id$
@@ -33,7 +33,7 @@
  * @category  HTML
  * @package   HTML_TagCloud
  * @author    Shoma Suzuki <shoma@catbot.net>
- * @author    Bastian Onken <bastian.onken@gmx.net>
+ * @author    Bastian Onken <bastianonken@php.net>
  * @copyright 2008 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   Release: @package_version@
@@ -332,7 +332,7 @@ class HTML_TagCloud
      *
      * @return string HTML and CSS
      *
-     * @see HTML_TagCloud::_buildAll
+     * @see HTML_TagCloud::buildAll
      * @since Method available since Release 0.1.0
      * @deprecated Method deprecated in Release 0.1.3
      * @legacy
