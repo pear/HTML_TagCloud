@@ -185,9 +185,8 @@ class HTML_TagCloud
      * @since Method available since Release 0.1.0
      */
     public function __construct($baseFontSize = null, $fontSizeRange = null,
-                                $latestColor = null, $earliestColor = null,
-                                $thresholds = 4)
-    {
+        $latestColor = null, $earliestColor = null, $thresholds = 4
+    ) {
         // to be able to set up multiple tag clouds in one page we need to set
         //  up a unique id that will prefix the css names later
         $this->_uid = 'tagcloud'.uniqid();
@@ -210,9 +209,9 @@ class HTML_TagCloud
         $this->_maxFontSize = $this->baseFontSize + $this->fontSizeRange;
         // override default epocLevel settings
         if (!is_null($latestColor) && !is_null($earliestColor) && $thresholds > 0) {
-            $this->epocLevel = $this->_generateEpocLevel($latestColor,
-                                                         $earliestColor,
-                                                         $thresholds);
+            $this->epocLevel = $this->_generateEpocLevel(
+                $latestColor, $earliestColor, $thresholds
+            );
         }
     }
 

@@ -26,14 +26,16 @@ require_once 'PEAR/PackageFileManager2.php';
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
 $packagexml = new PEAR_PackageFileManager2();
-$packagexml->setOptions(array(
-    'baseinstalldir' => 'HTML',
-    'packagedirectory' => dirname(__FILE__),
-    'filelistgenerator' => 'svn', // generate from svn, use file for directory
-    'ignore' => array(__FILE__, 'misc/'),
-    'packagefile' => 'package2.xml',
-    'dir_roles' => array('docs' => 'doc', 'tests' => 'test')
-));
+$packagexml->setOptions(
+    array(
+        'baseinstalldir' => 'HTML',
+        'packagedirectory' => dirname(__FILE__),
+        'filelistgenerator' => 'svn', // generate from svn
+        'ignore' => array(__FILE__, 'misc/'),
+        'packagefile' => 'package2.xml',
+        'dir_roles' => array('docs' => 'doc', 'tests' => 'test')
+    )
+);
 $packagexml->setChannel('pear.php.net');
 $packagexml->setPackage('HTML_TagCloud');
 $summary = <<<EOT
@@ -65,10 +67,12 @@ Features:
  - customizable font-sizes
 EOT;
 $packagexml->setDescription($description);
-$packagexml->addMaintainer('lead', 'bastianonken', 'Bastian Onken',
-                           'bastianonken'.'@'.'php.net', 'yes');
-$packagexml->addMaintainer('lead', 'shomas', 'Shoma Suzuki',
-                           'shoma'.'@'.'catbot.net', 'no');
+$packagexml->addMaintainer(
+    'lead', 'bastianonken', 'Bastian Onken', 'bastianonken'.'@'.'php.net', 'yes'
+);
+$packagexml->addMaintainer(
+    'lead', 'shomas', 'Shoma Suzuki', 'shoma'.'@'.'catbot.net', 'no'
+);
 $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
 // Current Release
@@ -81,11 +85,13 @@ $packagexml->setAPIStability('beta');
 $packagexml->setReleaseVersion('0.2.4');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
-$packagexml->addPackageDepWithChannel('optional', 'Image_Color', 'pear.php.net',
-                                      '1.0.2');
+$packagexml->addPackageDepWithChannel(
+    'optional', 'Image_Color', 'pear.php.net', '1.0.2'
+);
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->addGlobalReplacement('package-info', '@package_version@',
-                                  'version');
+$packagexml->addGlobalReplacement(
+    'package-info', '@package_version@', 'version'
+);
 $packagexml->addRelease(); // set up as current release at the release section
 
 // get current release dependencies for PHP
@@ -112,7 +118,8 @@ $packagexml->generateContents();
 
 // do the output: if make was set write to file, otherwise just print to screen
 if (   isset($_GET['make'])
-    || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
+    || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')
+) {
     //$pkg->writePackageFile();
     $packagexml->writePackageFile();
 } else {
