@@ -16,9 +16,9 @@
  * @package   HTML_TagCloud
  * @author    Shoma Suzuki <shoma@catbot.net>
  * @author    Bastian Onken <bastianonken@php.net>
- * @copyright 2008 Bastian Onken
+ * @copyright 2010 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version   CVS: $Id$
+ * @version   SVN: $Id$
  * @link      http://pear.php.net/package/HTML_TagCloud
  * @since     File available since Release 0.1.0
  */
@@ -34,7 +34,7 @@
  * @package   HTML_TagCloud
  * @author    Shoma Suzuki <shoma@catbot.net>
  * @author    Bastian Onken <bastianonken@php.net>
- * @copyright 2008 Bastian Onken
+ * @copyright 2010 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/HTML_TagCloud

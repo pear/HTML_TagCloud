@@ -15,9 +15,9 @@
  * @category  HTML
  * @package   HTML_TagCloud
  * @author    Bastian Onken <bastianonken@php.net>
- * @copyright 2008 Bastian Onken
+ * @copyright 2010 Bastian Onken
  * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version   CVS: $Id$
+ * @version   SVN: $Id$
  * @link      http://pear.php.net/package/HTML_TagCloud
  * @since     File available since Release 0.1.0
  */
@@ -29,7 +29,7 @@ $packagexml = new PEAR_PackageFileManager2();
 $packagexml->setOptions(array(
     'baseinstalldir' => 'HTML',
     'packagedirectory' => dirname(__FILE__),
-    'filelistgenerator' => 'cvs', // generate from cvs, use file for directory
+    'filelistgenerator' => 'svn', // generate from svn, use file for directory
     'ignore' => array(__FILE__, 'misc/'),
     'packagefile' => 'package2.xml',
     'dir_roles' => array('docs' => 'doc', 'tests' => 'test')
@@ -73,12 +73,12 @@ $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
 // Current Release
 $notes = <<<EOT
-Bug fixes:
-* bug #14965: generateEpocLevel can't actually be used
+New Features:
+* req #17052: Option to set TagCloud's output to XML (instead of XHTML)
 EOT;
-$packagexml->setAPIVersion('0.2.3');
+$packagexml->setAPIVersion('0.2.4');
 $packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.2.3');
+$packagexml->setReleaseVersion('0.2.4');
 $packagexml->setReleaseStability('beta');
 $packagexml->setNotes($notes);
 $packagexml->addPackageDepWithChannel('optional', 'Image_Color', 'pear.php.net',
@@ -97,7 +97,7 @@ PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
 $available = $packagexml->detectDependencies($options);
 if (PEAR::isError($available)) {
     // PHP_CompatInfo is not installed, set up PHP dep manually
-    $packagexml->setPhpDep('5.1.0');
+    $packagexml->setPhpDep('5.2.0');
 }
 PEAR::popErrorHandling();
 
