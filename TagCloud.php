@@ -196,6 +196,7 @@ class HTML_TagCloud
      * @param string $earliestColor color of earliest tag, usually light
      *                              (optional)
      * @param int    $thresholds    number of timelines to set up (optional)
+     * @param string $sizeSuffix    CSS font size unit (optional)
      * @param string $tagSeparator  separator printed between tags (optional)
      *
      * @since Method available since Release 0.1.0
@@ -241,7 +242,8 @@ class HTML_TagCloud
         // override default epocLevel settings
         if ($latestColor !== null
             && $earliestColor !== null
-            && $this->thresholds > 0) {
+            && $this->thresholds > 0
+        ) {
             $this->epocLevel = $this->_generateEpocLevel(
                 $latestColor, $earliestColor, $this->thresholds
             );
@@ -735,7 +737,7 @@ class HTML_TagCloud
      * @since Method available since Release 0.1.0
      */
     private function _wrapDiv($html)
-   {
+    {
         return $html == '' ? '' : '<div class="'.$this->cssClass.' '.$this->_uid.'">'
                                   ."\n".$html."\n</div>\n";
     }
