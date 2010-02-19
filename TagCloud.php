@@ -75,6 +75,20 @@ class HTML_TagCloud
     protected $sizeSuffix = 'px';
 
     /**
+     * Stores the separator string which will be put between the tags
+     *
+     * @var string
+     */
+    protected $tagSeparator = " &nbsp;\n";
+
+    /**
+     * Stores the number of color thresholds
+     *
+     * @var int
+     */
+    protected $thresholds = 4;
+
+    /**
      * Defines colors of the different levels to that tags will be assigned to
      * (based on tag's age)
      *
@@ -176,30 +190,36 @@ class HTML_TagCloud
     /**
      * Class constructor
      *
-     * @param int    $baseFontSize  base font size of output tag (option)
-     * @param int    $fontSizeRange font size range
-     * @param string $latestColor   color of latest tag (usually dark)
-     * @param string $earliestColor color of earliest tag (usually light)
-     * @param int    $thresholds    number of timelines to set up
+     * @param int    $baseFontSize  base font size of output tag (optional)
+     * @param int    $fontSizeRange font size range (optional)
+     * @param string $latestColor   color of latest tag, usually dark (optional)
+     * @param string $earliestColor color of earliest tag, usually light
+     *                              (optional)
+     * @param int    $thresholds    number of timelines to set up (optional)
+     * @param string $tagSeparator  separator printed between tags (optional)
      *
      * @since Method available since Release 0.1.0
      */
     public function __construct($baseFontSize = null, $fontSizeRange = null,
-        $latestColor = null, $earliestColor = null, $thresholds = 4
+        $latestColor = null, $earliestColor = null, $thresholds = null, 
+        $sizeSuffix = null, $tagSeparator = null
     ) {
         // to be able to set up multiple tag clouds in one page we need to set
         //  up a unique id that will prefix the css names later
         $this->_uid = 'tagcloud'.uniqid();
+
         // if $baseFontSize was given, set to value, otherwise keep the original
         //  value of HTML_TagCloud::baseFontSize
-        if (!is_null($baseFontSize)) {
+        if ($baseFontSize !== null) {
             $this->baseFontSize = $baseFontSize;
         }
+
         // if $fontSizeRange was given, set to value, otherwise keep the
         //  original value of HTML_TagCloud::fontSizeRange
-        if (!is_null($fontSizeRange)) {
+        if ($fontSizeRange !== null) {
             $this->fontSizeRange = $fontSizeRange;
         }
+
         // make sure that we are in a positive font range
         if ($this->baseFontSize - $this->fontSizeRange > 0) {
             $this->_minFontSize = $this->baseFontSize - $this->fontSizeRange;
@@ -207,11 +227,29 @@ class HTML_TagCloud
             $this->_minFontSize = 0;
         }
         $this->_maxFontSize = $this->baseFontSize + $this->fontSizeRange;
+
+        // override default sizeSuffix value
+        if ($sizeSuffix !== null) {
+            $this->sizeSuffix = $sizeSuffix;
+        }
+
+        // override default threshold setting
+        if ($thresholds !== null) {
+            $this->thresholds = $thresholds;
+        }
+
         // override default epocLevel settings
-        if (!is_null($latestColor) && !is_null($earliestColor) && $thresholds > 0) {
+        if ($latestColor !== null
+            && $earliestColor !== null
+            && $this->thresholds > 0) {
             $this->epocLevel = $this->_generateEpocLevel(
-                $latestColor, $earliestColor, $thresholds
+                $latestColor, $earliestColor, $this->thresholds
             );
+        }
+
+        // override default tagSeparator setting
+        if ($tagSeparator !== null) {
+            $this->tagSeparator = $tagSeparator;
         }
     }
 
@@ -401,7 +439,7 @@ class HTML_TagCloud
         $total = count($this->_elements);
         if ($total == 0) {
             // no tag elements, return with "not enough data"
-            return '<p>not enough data</p>'."\n";
+            return '<p>not enough data</p>';
         } elseif ($total == 1) {
             // only 1 element was set, no need to process sizes or colors, so
             // just create html with standard setup and return
@@ -451,7 +489,7 @@ class HTML_TagCloud
             $fontSize  = $this->_minFontSize + $countLv;
             $rtn[]     = $this->createHTMLTag($tag, $type, $fontSize);
         }
-        return implode('', $rtn);
+        return implode($this->tagSeparator, $rtn);
     }
 
     // }}}
@@ -499,7 +537,7 @@ class HTML_TagCloud
                .' style="font-size:'.$fontSize.$this->sizeSuffix.';"'
                .' class="tagcloudElement '.$type.'">'
                .htmlspecialchars($tag['name'])
-               .'</a> &nbsp;'."\n";
+               .'</a>';
     }
 
     // }}}
@@ -697,9 +735,9 @@ class HTML_TagCloud
      * @since Method available since Release 0.1.0
      */
     private function _wrapDiv($html)
-    {
+   {
         return $html == '' ? '' : '<div class="'.$this->cssClass.' '.$this->_uid.'">'
-                                  ."\n".$html.'</div>'."\n";
+                                  ."\n".$html."\n</div>\n";
     }
 
     // }}}
@@ -715,4 +753,3 @@ class HTML_TagCloud
  * c-basic-offset: 4
  * End:
  */
-?>
