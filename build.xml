@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="HTML_TagCloud" basedir="." default="dist">
+    <target name="info">
+        <echo>
+To create a new distributable package, run "dist" target.
+
+This Ant builder need these packages installed:
+- PEAR
+- pear/PHP_CodeSniffer
+- pear/PEAR_PackageFileManager2
+- pear/PHP_CompatInfo
+- phpunit/PHPUnit
+
+Additionally you have to create a "build.properties" file in which you have to
+specify some environment variables to get this builder to run.
+See "build.default.properties" file for any hints and rename it to
+"build.properties" afterwards.
+        </echo>
+    </target>
+    <property file="build.properties" />
+    <property name="install-raw.includes" value="TagCloud.php" />
+    <property name="buildFailsIfCodingStandardsAreNotFulfilled" value="false" />
+    <property name="dist.dir" value="${basedir}/dist" />
+    <property name="dirs.ignoreCodingStandards" value="${dist.dir},tests" />
+    <target name="clean">
+        <delete dir="${dist.dir}" />
+    </target>
+    <target name="checkCodingStandards"
+            description="check how well the sources comply to coding standards">
+        <exec executable="${phpcs.executable.path}"
+              failonerror="${buildFailsIfCodingStandardsAreNotFulfilled}">
+            <arg line="--ignore=${dirs.ignoreCodingStandards} ${basedir}" />
+        </exec>
+    </target>
+    <target name="runAllTests" description="run all unit tests">
+        <exec executable="${php.executable.path}" failonerror="true">
+            <arg line="-f ${basedir}/tests/AllTests.php" />
+        </exec>
+    </target>
+    <target name="generatePackageXML">
+        <exec executable="${php.executable.path}" failonerror="true">
+            <arg line="-f generatePackage.xml.php make" />
+        </exec>
+    </target>
+    <target name="package-validate">
+        <exec executable="${pear.executable.path}" failonerror="true">
+            <arg line="package-validate package2.xml" />
+        </exec>
+    </target>
+    <target name="package">
+        <exec executable="${pear.executable.path}" failonerror="true">
+            <arg line="package package2.xml" />
+        </exec>
+        <mkdir dir="${dist.dir}" />
+        <move todir="${dist.dir}" verbose="true">
+            <fileset dir="${basedir}" includes="HTML_TagCloud-*.tgz" />
+        </move>
+    </target>
+    <target name="dist"
+            depends="clean,checkCodingStandards,runAllTests,generatePackageXML,package-validate,package"
+            description="make a distributable package">
+        <echo>Package file has been successfully stored in ${dist.dir}</echo>
+    </target>
+    <target name="install"
+            depends="dist" description="install package">
+        <apply executable="${pear.executable.path}" failonerror="true">
+            <arg line="install --force" />
+            <fileset dir="${dist.dir}" includes="HTML_TagCloud*.tgz" />
+        </apply>
+    </target>
+    <target name="install-raw"
+            description="quickly installs only main class file without building a package">
+        <copy todir="${install-raw.dest-dir}/HTML" overwrite="true" verbose="true">
+            <fileset dir="${basedir}" includes="${install-raw.includes}" />
+        </copy>
+    </target>
+</project>
