@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
@@ -40,40 +40,45 @@ Features:
   <email>shoma@catbot.net</email>
   <active>no</active>
  </lead>
- <date>2008-11-09</date>
- <time>20:51:54</time>
+ <date>2010-02-19</date>
+ <time>12:02:22</time>
  <version>
-  <release>0.2.3</release>
-  <api>0.2.3</api>
+  <release>0.2.4</release>
+  <api>0.2.4</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>Bug fixes:
-* bug #14965: generateEpocLevel can&apos;t actually be used</notes>
+ <notes>
+New Features:
+* req #17052: Added possibility to set up individual tag separators
+ </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
-   <file baseinstalldir="HTML" md5sum="f8df493dab81534dcedf94067c5231a5" name="docs/examples/TagCloud_example1.php" role="doc">
+   <file baseinstalldir="HTML" md5sum="0e9de33bcb985552f65ec16d0c21f7d0" name="docs/examples/TagCloud_example1.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="30b3f18a2f5417918fdd34e397c7f105" name="docs/examples/TagCloud_example2.php" role="doc">
+   <file baseinstalldir="HTML" md5sum="6c7cb63ed0c35362a736c898ecd93157" name="docs/examples/TagCloud_example2.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="f13e39cc771de73984c2c765b2e299c6" name="docs/examples/TagCloud_example3.php" role="doc">
+   <file baseinstalldir="HTML" md5sum="bb667d8ea6addc6dc6895dc31067be23" name="docs/examples/TagCloud_example3.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="6983645ed10105cee95df70ddf4c6a34" name="docs/examples/TagCloud_example4.php" role="doc">
+   <file baseinstalldir="HTML" md5sum="dc8c1d97c0349c5c10087be7f7d303ab" name="docs/examples/TagCloud_example4.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="ee71604419d85cc5aae7e83153363ae3" name="tests/AllTests.php" role="test">
+   <file baseinstalldir="HTML" md5sum="7a31370622ef26faf990051d9a2341f4" name="docs/examples/TagCloud_example5.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="960ac19954ccfdf53eff110608e6ba71" name="tests/TagCloudTest.php" role="test">
+   <file baseinstalldir="HTML" md5sum="bd6948b23c5296700a3e3aa1d865941a" name="tests/AllTests.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="0ab50c4eef1241d96bfe02e5f4be3ca6" name="TagCloud.php" role="php">
+   <file baseinstalldir="HTML" md5sum="1d40ef1fef7489e6cf245262c164d76a" name="tests/TagCloudTest.php" role="test">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" md5sum="9d2f76c8200275d5495e3f3bd865fddc" name="TagCloud.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
   </dir>
@@ -81,7 +86,7 @@ Features:
  <dependencies>
   <required>
    <php>
-    <min>5.1.0</min>
+    <min>5.2.0</min>
    </php>
    <pearinstaller>
     <min>1.4.0b1</min>
@@ -111,7 +116,9 @@ Features:
    </stability>
    <date>2006-10-02</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>First Release as PEAR Package</notes>
+   <notes>
+First Release as PEAR Package
+   </notes>
   </release>
   <release>
    <version>
@@ -124,7 +131,9 @@ Features:
    </stability>
    <date>2006-10-03</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>removed docs/CVS</notes>
+   <notes>
+removed docs/CVS
+   </notes>
   </release>
   <release>
    <version>
@@ -137,10 +146,12 @@ Features:
    </stability>
    <date>2007-11-23</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>Bug fix release
+   <notes>
+Bug fix release
 
 Fixed bug #10569 &quot;Notice on line 401 running example2.php&quot;
-Fixed bug #12419 &quot;Extended class defines wrong array parameters&quot;</notes>
+Fixed bug #12419 &quot;Extended class defines wrong array parameters&quot;
+   </notes>
   </release>
   <release>
    <version>
@@ -153,7 +164,8 @@ Fixed bug #12419 &quot;Extended class defines wrong array parameters&quot;</note
    </stability>
    <date>2008-01-23</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>Quality review release
+   <notes>
+Quality review release
  - Heavily applied PEAR Coding Standards
  - extended unit tests
 
@@ -165,7 +177,8 @@ Fixed issues
    string.
  - Returned value of _buidHTMLTags was of wrong type if no tags were set up.
    This behaviour has been changed. An empty tag cloud will now be displayed
-   with text &quot;not enough data&quot; instead of returning an empty string.</notes>
+   with text &quot;not enough data&quot; instead of returning an empty string.
+   </notes>
   </release>
   <release>
    <version>
@@ -178,7 +191,8 @@ Fixed issues
    </stability>
    <date>2008-03-10</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>New features
+   <notes>
+New features
  - Added ability to set up timeline colors for tags dynamically by setting up a
     latestColor and a earliestColor and the number of thresholds.
     (requires PEAR package &quot;Image_Color&quot;)
@@ -187,7 +201,8 @@ Fixed issues
 Fixed issues
  - Fixed issue with setting up basefonsize and fontsizerange on extending class
    (doesn&apos;t got recognized when instance isn&apos;t constructed with these values;
-   so they were useless in most of the cases)</notes>
+   so they were useless in most of the cases)
+   </notes>
   </release>
   <release>
    <version>
@@ -200,7 +215,8 @@ Fixed issues
    </stability>
    <date>2008-04-07</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>Fixed issues:
+   <notes>
+Fixed issues:
 * fixed bug #13348: PHP warning message when not using timestamps
 * fixed issue with PHP notice message when not using counts
 * fixed issue with PHP notice message when not using urls
@@ -208,7 +224,8 @@ Fixed issues
 * addElement: name is now mandatory
 
 Feature requests:
-* implemented #12417: Adding weighted limitation of elements</notes>
+* implemented #12417: Adding weighted limitation of elements
+   </notes>
   </release>
   <release>
    <version>
@@ -221,9 +238,11 @@ Feature requests:
    </stability>
    <date>2008-04-07</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>Feature requests:
+   <notes>
+Feature requests:
 * implemented req #13598: Add public getElementCount() method to return the
-  number of elements in a cloud</notes>
+  number of elements in a cloud
+   </notes>
   </release>
   <release>
    <version>
@@ -234,10 +253,28 @@ Feature requests:
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2008-11-09</date>
+   <date>2010-02-19</date>
    <license uri="http://www.php.net/license">PHP License</license>
-   <notes>Bug fixes:
-* bug #14965: generateEpocLevel can&apos;t actually be used</notes>
+   <notes>
+Bug fixes:
+* bug #14965: generateEpocLevel can&apos;t actually be used
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.4</release>
+    <api>0.2.4</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2010-02-19</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+New Features:
+* req #17052: Added possibility to set up individual tag separators
+   </notes>
   </release>
  </changelog>
 </package>

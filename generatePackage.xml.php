@@ -31,7 +31,7 @@ $packagexml->setOptions(
         'baseinstalldir' => 'HTML',
         'packagedirectory' => dirname(__FILE__),
         'filelistgenerator' => 'svn', // generate from svn
-        'ignore' => array(__FILE__, 'misc/'),
+        'ignore' => array(__FILE__, 'misc/', 'build*.properties', 'build.xml'),
         'packagefile' => 'package2.xml',
         'dir_roles' => array('docs' => 'doc', 'tests' => 'test')
     )
@@ -78,7 +78,7 @@ $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 // Current Release
 $notes = <<<EOT
 New Features:
-* req #17052: Option to set TagCloud's output to XML (instead of XHTML)
+* req #17052: Added possibility to set up individual tag separators
 EOT;
 $packagexml->setAPIVersion('0.2.4');
 $packagexml->setAPIStability('beta');
@@ -97,7 +97,7 @@ $packagexml->addRelease(); // set up as current release at the release section
 // get current release dependencies for PHP
 $options = array(
     'ignore_functions' => array(),
-    'ignore_files' => array()
+    'ignore_files' => array(),
 );
 PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
 $available = $packagexml->detectDependencies($options);
