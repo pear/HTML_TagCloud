@@ -81,6 +81,11 @@ print $css;
 print $taghtml;
 
 // Show source, you don't need this line in your code, it's just for showing off
+?>
+<br/>
+Take a look at the source:<br/>
+<?php
+
 show_source(__FILE__);
 
 ?>

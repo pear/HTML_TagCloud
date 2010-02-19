@@ -197,6 +197,11 @@ to-be-generated epocLevel to '1' at constructor time:</p>
 print $tags2->buildHTML();
 
 // Show source, you don't need this line in your code, it's just for showing off
+?>
+<br/>
+Take a look at the source:<br/>
+<?php
+
 show_source(__FILE__);
 
 ?>

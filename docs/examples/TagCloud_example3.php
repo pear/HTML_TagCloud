@@ -150,4 +150,9 @@ $tags->addElement('PostgreSQL', 'http://pgsql.com', 6, strtotime('-3 week'));
 print $tags->buildALL();
 
 // Show source, you don't need this line in your code, it's just for showing off
+?>
+<br/>
+Take a look at the source:<br/>
+<?php
+
 show_source(__FILE__);
