@@ -31,7 +31,7 @@ $packagexml->setOptions(
         'baseinstalldir' => 'HTML',
         'packagedirectory' => dirname(__FILE__),
         'filelistgenerator' => 'svn', // generate from svn
-        'ignore' => array(__FILE__, 'misc/', 'build*.properties', 'build.xml'),
+        'ignore' => array(__FILE__, 'misc/', 'build*.properties', 'build.xml', 'generatePackage.xml.php'),
         'packagefile' => 'package2.xml',
         'dir_roles' => array('docs' => 'doc', 'tests' => 'test')
     )
@@ -77,13 +77,12 @@ $packagexml->setLicense('PHP License', 'http://www.php.net/license');
 
 // Current Release
 $notes = <<<EOT
-New Features:
-* req #17052: Added possibility to set up individual tag separators
+No change since 0.2.4 beta; promoted to stable version.
 EOT;
-$packagexml->setAPIVersion('0.2.4');
-$packagexml->setAPIStability('beta');
-$packagexml->setReleaseVersion('0.2.4');
-$packagexml->setReleaseStability('beta');
+$packagexml->setAPIVersion('1.0.0');
+$packagexml->setAPIStability('stable');
+$packagexml->setReleaseVersion('1.0.0');
+$packagexml->setReleaseStability('stable');
 $packagexml->setNotes($notes);
 $packagexml->addPackageDepWithChannel(
     'optional', 'Image_Color', 'pear.php.net', '1.0.2'

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package packagerversion="1.9.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
@@ -40,20 +40,19 @@ Features:
   <email>shoma@catbot.net</email>
   <active>no</active>
  </lead>
- <date>2010-02-19</date>
- <time>12:02:22</time>
+ <date>2011-03-02</date>
+ <time>13:37:26</time>
  <version>
-  <release>0.2.4</release>
-  <api>0.2.4</api>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
  </version>
  <stability>
-  <release>beta</release>
-  <api>beta</api>
+  <release>stable</release>
+  <api>stable</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-New Features:
-* req #17052: Added possibility to set up individual tag separators
+No change since 0.2.4 beta; promoted to stable version.
  </notes>
  <contents>
   <dir baseinstalldir="HTML" name="/">
@@ -274,6 +273,21 @@ Bug fixes:
    <notes>
 New Features:
 * req #17052: Added possibility to set up individual tag separators
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-03-02</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+No change since 0.2.4 beta; promoted to stable version.
    </notes>
   </release>
  </changelog>
