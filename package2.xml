@@ -55,29 +55,29 @@ Features:
 No change since 0.2.4 beta; promoted to stable version.
  </notes>
  <contents>
-  <dir baseinstalldir="HTML" name="/">
-   <file baseinstalldir="HTML" md5sum="0e9de33bcb985552f65ec16d0c21f7d0" name="docs/examples/TagCloud_example1.php" role="doc">
+  <dir baseinstalldir="/" name="/">
+   <file name="docs/examples/TagCloud_example1.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="6c7cb63ed0c35362a736c898ecd93157" name="docs/examples/TagCloud_example2.php" role="doc">
+   <file name="docs/examples/TagCloud_example2.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="bb667d8ea6addc6dc6895dc31067be23" name="docs/examples/TagCloud_example3.php" role="doc">
+   <file name="docs/examples/TagCloud_example3.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="dc8c1d97c0349c5c10087be7f7d303ab" name="docs/examples/TagCloud_example4.php" role="doc">
+   <file name="docs/examples/TagCloud_example4.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="7a31370622ef26faf990051d9a2341f4" name="docs/examples/TagCloud_example5.php" role="doc">
+   <file name="docs/examples/TagCloud_example5.php" role="doc">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="bd6948b23c5296700a3e3aa1d865941a" name="tests/AllTests.php" role="test">
+   <file name="tests/AllTests.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="1d40ef1fef7489e6cf245262c164d76a" name="tests/TagCloudTest.php" role="test">
+   <file name="tests/TagCloudTest.php" role="test">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="HTML" md5sum="9d2f76c8200275d5495e3f3bd865fddc" name="TagCloud.php" role="php">
+   <file name="HTML/TagCloud.php" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
   </dir>
